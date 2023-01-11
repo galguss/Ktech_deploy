@@ -1,0 +1,43 @@
+form{
+    direction: ltr;
+    margin: auto;
+    margin-top: 100px;
+    width: 60%;
+    height: 60%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+form label{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+   width: 66%;
+   height: 50px;
+   margin-bottom: 30px;
+   font-family: 'Times New Roman', Times, serif;
+   font-size: 24px;
+
+}
+
+form input{
+    height: 30px;
+    border-radius: 15px;
+    text-align: center;
+}
+
+form #submit{
+    width: 24%;
+    height: 40px;
+    border-radius: 10px;
+    font-size: 16px;
+    background-color: coral;
+    color: white;
+}
+
+p{
+    margin-top: 30px;
+    font-size: 24px;
+}

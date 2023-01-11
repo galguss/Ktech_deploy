@@ -1,0 +1,22 @@
+header{
+    width: 96%;
+    height: 80px;
+    margin: auto;
+    background-color: blue;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+header > h1{
+    width: 30%;
+    margin: auto;
+}
+
+header > a{
+    text-decoration: none;
+    font-size: 24px;
+    color: white;
+    margin-right: 110px;
+}

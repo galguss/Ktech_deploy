@@ -1,0 +1,25 @@
+Footer{
+    margin-top: 100px;
+    width: 96%;
+    height: 80px;
+    margin: auto;
+    background-color: blue;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    color: white;
+}
+
+Footer #A_creator{
+    width: 18%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+Footer #A_creator > a{
+    text-decoration: none;
+    font-size: 20px;
+    color: white;
+}

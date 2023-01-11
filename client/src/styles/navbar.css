@@ -1,0 +1,27 @@
+nav{
+    width: 20%;
+    height: 100%;
+    border-left: white solid 4px;
+    display: flex;
+    flex-direction: column;
+    color: black;
+}
+
+nav > p{
+    margin-top: 6px;
+}
+
+nav > a{
+    text-decoration: none;
+    margin-top: 4px;
+    color: coral;
+}
+
+nav button{
+    margin: auto;
+    width: 40%;
+    height: 30px;
+    background-color: white;
+    color: black;
+    margin-top: 20px;
+}

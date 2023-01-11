@@ -1,0 +1,19 @@
+#userTable{
+    direction: ltr;
+    width: 98%;
+    margin: auto;
+}
+
+.rdt_Table{
+    background-color: aqua;
+    direction: ltr;
+}
+
+.rdt_TableRow{
+    border: black solid 2px;
+}
+
+.rdt_TableCol{
+    background-color: aquamarine;
+    
+}
