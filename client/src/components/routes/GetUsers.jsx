@@ -35,8 +35,6 @@ function GetUsers({ isLogged }){
             selector: (row) => row.level
         }
     ];
-    
-    useEffect(() => fetchUsersData, []);
 
     async function fetchUsersData(){
         const URL = '/admin';
@@ -63,6 +61,7 @@ function GetUsers({ isLogged }){
                 columns={colums}
                 data ={users}
                 />
+                <button onClick={fetchUsersData}><b>Get Users</b></button>
                 </div>       
         )
     }  

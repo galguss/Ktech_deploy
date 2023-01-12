@@ -4,8 +4,7 @@ import '../../styles/routesStyle/getUsers.css';
 
 function GetProfessions({ isLogged }){
     const [Professions, setProfessions] = useState([{}]);
-    
-    useEffect(() => fetchProfessionsData, []);
+
     const colums = [
         {
             name: 'profession_id',
@@ -36,12 +35,13 @@ function GetProfessions({ isLogged }){
         }else {
             return(
        
-                <div id='ProfessionsTable'>
+                <div id='userTable'>
                 <DataTable 
                 title ='Professions'
                 columns={colums}
                 data ={Professions}
                 />
+                <button onClick={fetchProfessionsData}><b>Get Professions</b></button>
                 </div>       
         )
     }  

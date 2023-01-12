@@ -4,8 +4,6 @@ import '../../styles/routesStyle/getUsers.css';
 
 function GetSubjects({ isLogged }){
     const [Subjects, setSubjects] = useState([{}]);
-    
-    useEffect(() => fetchSubjectsData, []);
     const colums = [
         {
             name: 'subject_id',
@@ -36,12 +34,13 @@ function GetSubjects({ isLogged }){
         }else {
             return(
        
-                <div id='subjectsTable'>
+                <div id='userTable'>
                 <DataTable 
                 title ='Subjects'
                 columns={colums}
                 data ={Subjects}
                 />
+                <button onClick={fetchSubjectsData}><b>Get Subjects</b></button>
                 </div>       
         )
     }  

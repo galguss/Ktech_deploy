@@ -17,3 +17,12 @@
     background-color: aquamarine;
     
 }
+
+#userTable button{
+    width: 150px;
+    height: 30px;
+    border-radius: 6px;
+    background-color: coral;
+    color:white;
+    margin-top: 10px;
+}

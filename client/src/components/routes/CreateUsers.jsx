@@ -14,7 +14,7 @@ function CreateUser({isLogged}){
         const InputLevel = document.getElementById('level');
 
         try {
-            if((!InputEmail.value) || (!InputPassword.value) || (!InputGithub.value) || (!InputFullName.value) || (!InputLevel.value)){
+            if((!InputEmail.value) || (!InputPassword.value) || (!InputFullName.value) || (!InputLevel.value)){
                 setCeate("Please check the fields");
             }else{
                 const URL = '/admin';

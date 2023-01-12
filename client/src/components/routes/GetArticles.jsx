@@ -56,8 +56,6 @@ function GetArticles({ isLogged }){
         }
     ];
     
-    useEffect(() => fetchArticlesData, []);
-
     async function fetchArticlesData(){
         const URL = '/articles';
         const response = await fetch(URL);
@@ -83,6 +81,7 @@ function GetArticles({ isLogged }){
                 columns={colums}
                 data ={Articles}
                 />
+                <button onClick={fetchArticlesData}><b>Get Articles</b></button>
                 </div>       
         )
     }  
