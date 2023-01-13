@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../../styles/routesStyle/login.css';
 function Login({cb}){
+    const navigate = useNavigate();
     const [Login, setLogin] = useState('All fields must be filled');
     const [isLogged, setIsLogged] = useState(false);
     
@@ -28,6 +30,7 @@ function Login({cb}){
                 const data = await response.json();
                 setLogin(data);
                 setIsLogged((typeof data.token !== 'undefined' && data.token !== ''));
+                navigate('/GetArticles');
             }
         } catch (error) {
             setLogin("Incorrect email or password");
