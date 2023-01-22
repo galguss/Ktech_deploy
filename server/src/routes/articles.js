@@ -41,8 +41,27 @@ router.get('/', async (req, res) => {
 router.post('/', checkAdmin, upload.single('page'), async (req, res) => {
     try {
         const { filename: page } = req.file;
-        const { subject_id, profession_id, season_and_Question_numner, level} = req.body;
-        await article.createArticle(page, subject_id, profession_id, season_and_Question_numner, level);
+        const { subjectValue, professionValue, season_and_Question_numner, level} = req.body;
+
+        let subject = await subjects.getAllSubject();
+        let subjectId;
+        for(let k = 0; k < subject.length; k++){
+            if(subject[k] === subjectValue){
+                subjectId = k;
+                break;
+            }
+        }
+
+        let profession = await professions.getAllProfession();
+        let professionId;
+        for(let k = 0; k < profession.length; k++){
+            if(profession[k] === professionValue){
+                professionId = k;
+                break;
+            }
+        }
+
+        await article.createArticle(page, subjectId, professionId, season_and_Question_numner, level);
 
         res.status(200).json({
             message: "article created!"

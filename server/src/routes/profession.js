@@ -27,8 +27,12 @@ router.post('/', checkAdmin, async (req, res) => {
 
 router.patch('/', checkAdmin, async (req, res) => {
     try {
-        const { professionId,  newValue} = req.body;
-        await professionDB.updateProfession(newValue, professionId);
+        const { professionData,  newValue} = req.body;
+        const professionArray = await professionDB.getAllProfession();
+
+        for(let k = 0; k < professionArray.length; k++)
+        if(professionData === professionArray[k])
+        await professionDB.updateProfession(newValue, k);
 
         res.status(200).json({
             message: "profession Updated!"
@@ -43,9 +47,12 @@ router.patch('/', checkAdmin, async (req, res) => {
 
 router.delete('/', checkAdmin, async (req, res) => {
     try {
-        const { professionId } = req.body;
+        const { professionData } = req.body;
+        const professionArray = await professionDB.getAllProfession();
 
-        await professionDB.deleteProfession(professionId);
+        for(let k = 0; k < professionArray.length; k++)
+        if(professionData === professionArray[k])
+        await professionDB.deleteProfession(k);
 
         res.status(200).json({
             message: "profession deleted!"

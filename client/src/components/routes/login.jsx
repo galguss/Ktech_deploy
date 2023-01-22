@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../../styles/routesStyle/login.css';
 function Login({cb}){
+    const navigate = useNavigate();
     const [Login, setLogin] = useState('All fields must be filled');
-    const [isLogged, setIsLogged] = useState(false);
-    
-    useEffect(() =>setIsLogged(true), []);
 
     async function SubmitLogin(){
 
@@ -27,7 +26,11 @@ function Login({cb}){
                 });
                 const data = await response.json();
                 setLogin(data);
-                setIsLogged((typeof data.token !== 'undefined' && data.token !== ''));
+    
+               if((typeof data.token !== 'undefined' && data.token !== "")){
+                cb(() => true);
+                navigate('/GetArticles');
+               }
             }
         } catch (error) {
             setLogin("Incorrect email or password");
@@ -39,7 +42,7 @@ function Login({cb}){
             <form>
               <label><b>email:</b><input type="email" name='email' id='email' required/></label>
               <label><b>password:</b><input type="password" name='password' id='password' required/></label>
-              <button id='submit' onClick={e => { e.preventDefault(); SubmitLogin(); cb(() => isLogged)}}><b>login</b></button>  
+              <button id='submit' onClick={e => { e.preventDefault(); SubmitLogin();}}><b>login</b></button>  
             </form>
 
             <p>{Login.message}</p>

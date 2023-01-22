@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import '../../styles/routesStyle/login.css';
 
+import Menu from "../Menu";
+
 function CreateArticles({isLogged}){
     const [Create, setCeate] = useState('All fields must be filled');
     
@@ -42,14 +44,16 @@ function CreateArticles({isLogged}){
         return (
             <>
                 <form id='articleForm'>
-                  <label><b>subject Id:</b><input type="number" name='subject_id' id='subjectId' required/></label>
-                  <label><b>profession Id:</b><input type="number" name='profession_id' id='professionId' required/></label>
+                  <label><b>subject:</b><input type="text" list='subject' name='subjectValue' id='subjectId' required/></label>
+                  <Menu item = "subject" />
+                  <label><b>profession:</b><input type="text" list='profession' name='professionValue' id='professionId' required/></label>
+                  <Menu item = "profession" />
                   <label><b>Season <br /> And <br /> Question Numner:</b><input type="text" name='season_and_Question_numner' id='SQN' required/></label>
                   <label><b>Level:</b><input type="text" name='level' id='level' required/></label>
                   <label><b></b><input type="file" id='file' /></label>
                   <button id='submit' onClick={e => { e.preventDefault(); SubmitCeate()}} ><b>submit</b></button>  
                 </form>
-    
+
                 <p>{Create.message}</p>
             </>
         )

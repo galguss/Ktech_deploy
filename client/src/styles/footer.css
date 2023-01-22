@@ -12,7 +12,7 @@ Footer{
 }
 
 Footer #A_creator{
-    width: 18%;
+    width: 26%;
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -20,6 +20,10 @@ Footer #A_creator{
 
 Footer #A_creator > a{
     text-decoration: none;
-    font-size: 20px;
+    font-size: 30px;
     color: white;
+}
+
+Footer p{
+    margin: auto 0;
 }

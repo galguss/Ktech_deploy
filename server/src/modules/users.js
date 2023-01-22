@@ -36,12 +36,12 @@ exports.login =(email) => {
 }
 
 exports.getUserName = async () => {
-    let sql = `SELECT user_id, full_name FROM users;`;
+    let sql = `SELECT user_id, email FROM users;`;
     let [userNames, _] = await db.execute(sql);
     const userName = [];
 
     for(let user of userNames){
-        userName[user.user_id] = user.full_name;
+        userName[user.user_id] = user.email;
     };
 
     return userName;

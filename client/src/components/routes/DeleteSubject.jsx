@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import '../../styles/routesStyle/login.css';
+import Menu from '../Menu'
 
 function DeleteSubject({isLogged}){
     const [Delete, setDelete] = useState('All fields must be filled');
@@ -20,7 +21,7 @@ function DeleteSubject({isLogged}){
                         'Content-Type': 'application/json'
                       },
                     body: JSON.stringify({
-                        subjectId: InputSubjectId.value
+                        subjectData: InputSubjectId.value
                     })  
                 });
                 const data = await response.json();
@@ -41,7 +42,8 @@ function DeleteSubject({isLogged}){
         return (
             <>
                 <form>
-                  <label><b>Subject Id:</b><input type="number" name='subjectId' id='subjectId' required/></label>
+                  <label><b>Subject:</b><input type="text" list='subject' name='subjectId' id='subjectId' required/></label>
+                  <Menu item = "subject" />
                   <button id='submit' onClick={e => { e.preventDefault(); SubmitDelete()}}><b>submit</b></button>  
                 </form>
     

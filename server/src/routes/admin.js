@@ -4,6 +4,7 @@ const express = require('express');
 const router = express.Router();
 
 const User = require('../modules/users');
+const { Console } = require('console');
 
 const bcryptHash = util.promisify(bcrypt.hash);
 
@@ -47,8 +48,12 @@ router.patch('/', async (req, res) => {
 
 router.delete('/', async ( req, res ) => {
     try {
-        const { userId } = req.body;
-        await User.deleteUser(userId);
+        const { userEmail } = req.body;
+        const userEmails = await User.getUserName();
+        
+        for(let k = 0; k < userEmails.length; k++)
+            if(userEmail === userEmails[k])
+                await User.deleteUser(k);
 
         res.status(201).json({
             message: "user deleted"

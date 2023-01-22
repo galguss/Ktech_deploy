@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import '../../styles/routesStyle/login.css';
+import Menu from "../Menu"
 
 function PacthSubject({isLogged}){
     const [Patch, setPatch] = useState('All fields must be filled');
@@ -22,7 +23,7 @@ function PacthSubject({isLogged}){
                         'Content-Type': 'application/json'
                       },
                     body: JSON.stringify({
-                        subjectId: InputSubjectId.value,
+                        subjectData: InputSubjectId.value,
                         newValue: InputNewValue.value
                     })  
                 });
@@ -44,7 +45,8 @@ function PacthSubject({isLogged}){
         return (
             <>
                 <form>
-                  <label><b>Subject Id:</b><input type="text" name='subjectId' id='subjectId' required/></label>
+                  <label><b>Subject:</b><input type="text" list='subject' name='subjectId' id='subjectId' required/></label>
+                  <Menu item = "subject"/>
                   <label><b>New Value:</b><input type="text" name='newValue' id='newValue' required/></label>
                   <button id='submit' onClick={e => { e.preventDefault(); SubmitPatch()}}><b>submit</b></button>  
                 </form>
