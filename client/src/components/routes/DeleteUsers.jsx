@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
 import '../../styles/routesStyle/login.css';
 
+import Menu from "../Menu"
+
 function DeleteUsers({isLogged}){
     const [Delete, setDelete] = useState('All fields must be filled');
     
     
     async function SubmitDelete(){
 
-        const InputuserId = document.getElementById('userId');
+        const InputuserEmail = document.getElementById('userId');
 
         try {
-            if((!InputuserId.value)){
+            if((!InputuserEmail.value)){
                 setDelete("Who would you like to delete?");
             }else{
                 const URL = '/admin';
@@ -20,7 +22,7 @@ function DeleteUsers({isLogged}){
                         'Content-Type': 'application/json'
                       },
                     body: JSON.stringify({
-                        userId: InputuserId.value
+                        userEmail: InputuserEmail.value
                     })  
                 });
                 const data = await response.json();
@@ -41,7 +43,8 @@ function DeleteUsers({isLogged}){
         return (
             <>
                 <form>
-                  <label><b>User Id:</b><input type="number" name='userId' id='userId' required/></label>
+                  <label><b>User:</b><input type="email" list='users' name='userEmail' id='userId' required/></label>
+                  <Menu item ="users" />
                   <button id='submit' onClick={e => { e.preventDefault(); SubmitDelete()}}><b>submit</b></button>  
                 </form>
     

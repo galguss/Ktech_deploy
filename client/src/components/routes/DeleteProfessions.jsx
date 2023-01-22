@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import '../../styles/routesStyle/login.css';
+import Menu from '../Menu'
 
 function DeleteProfession({isLogged}){
     const [Delete, setDelete] = useState('All fields must be filled');
@@ -20,7 +21,7 @@ function DeleteProfession({isLogged}){
                         'Content-Type': 'application/json'
                       },
                     body: JSON.stringify({
-                        professionId: InputProfession.value
+                        professionData: InputProfession.value
                     })
                 });
                 const data = await response.json();
@@ -41,7 +42,8 @@ function DeleteProfession({isLogged}){
         return (
             <>
                 <form>
-                  <label><b>Profession Id:</b><input type="number" name='profession' id='professionId' required/></label>
+                  <label><b>Profession :</b><input type="text" list='profession' name='profession' id='professionId' required/></label>
+                  <Menu item = "profession" />
                   <button id='submit' onClick={e => { e.preventDefault(); SubmitDelete()}}><b>submit</b></button>  
                 </form>
     
