@@ -24,9 +24,6 @@ function CreateArticles({isLogged}){
                 const response = await fetch(URL, 
                     {
                         method: 'POST',
-                        headers:{
-                            'Content-Type': 'application/x-www-form-urlencoded'
-                        },
                         body: formData
                     });
                     const data = await response.json();

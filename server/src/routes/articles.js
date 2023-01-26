@@ -41,7 +41,6 @@ router.get('/', async (req, res) => {
 router.post('/', checkAdmin, upload.single('page'), async (req, res) => {
     try {
         const { filename: page } = req.file;
-        console.log(page);
         const { subjectValue, professionValue, season_and_Question_numner, level} = req.body;
 
         let subject = await subjects.getAllSubject();
