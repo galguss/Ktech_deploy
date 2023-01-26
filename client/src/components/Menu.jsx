@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react';
+import React, {useEffect} from 'react';
 import "../styles/menu.css";
 
 
 function Menu(props){
-    useEffect(() => responseList, []);
+    useEffect(()=> responseList(), []);
 
     const responseList = async () => {
         
