@@ -21,7 +21,6 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req,res) => {
     try {
-        console.log("hii");
         const { email, password, github, fullName, level } = req.body;
 
         const newPassword = await bcryptHash(password, 10);
