@@ -33,7 +33,7 @@ app.listen(port, (req, res) => {
 
 app.use(express.json());
 app.use(morgan('dev'));
-const publicPath = path.join(__dirname, "/public");
+const publicPath = path.join(__dirname, "./public");
 app.use(express.static(publicPath));
 const buildPath = path.join(__dirname, "../client/build");
 app.use(express.static(buildPath));
