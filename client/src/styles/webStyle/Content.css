@@ -1,0 +1,18 @@
+#content{
+    width: 70%;
+    margin: auto auto;
+}
+
+#text{
+    margin: auto;
+    width: 90%;
+    font-family: 'Varela Round', sans-serif;
+    font-size: 22px;
+    text-align: right;
+}
+
+p > img{
+    width: 400px;
+    float: left;
+    
+}

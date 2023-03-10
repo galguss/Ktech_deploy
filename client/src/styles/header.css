@@ -2,16 +2,17 @@ header{
     width: 96%;
     height: 80px;
     margin: auto;
-    background-color: blue;
+    background-color: #4375A2;
     color: white;
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-header > h1{
-    width: 30%;
+header > img{
+    width: 400px;
     margin: auto;
+    height: 80px;
 }
 
 header > a{

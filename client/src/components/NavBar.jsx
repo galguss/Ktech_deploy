@@ -5,31 +5,36 @@ import '../styles/navbar.css';
 function NavBar(){
     return (
         <nav>
-            <p><b> ניהול כותבים </b></p>
-            <Link to="/getUsers">הצגת כותבים</Link>
-            <Link to="/CreateUsers">יצירת כותבים</Link>
-            <Link to="/PatchUsers">עריכת כותבים</Link>
-            <Link to="/DeleteUsers">מחיקת כותבים</Link>
-
-            <p><b> ניהול שאלות </b></p>
-            <Link to="/GetArticles">הצגת שאלות</Link>
-            <Link to="/CreateArticles">יצירת שאלות</Link>
-            <Link to="/PatchArticles">עריכת שאלות</Link>
-            <Link to="/DeleteArticles">מחיקת שאלות</Link>
-
-            <p><b> ניהול נושאים </b></p>
-            <Link to="/GetSubjects">הצגת נושאים</Link>
-            <Link to="/CreateSubjects">יצירת נושאים</Link>
-            <Link to="/PatchSubjects">עריכת נושאים</Link>
-            <Link to="/DeleteSubjects">מחיקת נושאים</Link>
-
-            <p><b> ניהול מקצועות </b></p>
-            <Link to="/GetProfessions">הצגת מקצועות</Link>
-            <Link to="/CreateProfessions">יצירת מקצועות</Link>
-            <Link to="/PatchProfessions">עריכת מקצועות</Link>
-            <Link to="/DeleteProfessions">מחיקת מקצועות</Link>
+            <ul>
+                <li className="top"><b> ניהול כותבים </b></li>
+                <li className="item"><Link className="link" to="admin/getUsers">הצגת כותבים</Link></li>
+                <li className="item"><Link className="link" to="admin/CreateUsers">יצירת כותבים</Link></li>
+                <li className="item"><Link className="link" to="admin/PatchUsers">עריכת כותבים</Link></li>
+                <li className="item"><Link className="link" to="admin/DeleteUsers">מחיקת כותבים</Link></li>
+            </ul>
+            <ul>
+                <li className="top"><b> ניהול שאלות </b></li>
+                <li className="item"><Link className="link" to="admin/GetArticles">הצגת שאלות</Link></li>
+                <li className="item"><Link className="link" to="admin/CreateArticles">יצירת שאלות</Link></li>
+                <li className="item"><Link className="link" to="admin/PatchArticles">עריכת שאלות</Link></li>
+                <li className="item"><Link className="link" to="admin/DeleteArticles">מחיקת שאלות</Link></li>
+            </ul>
+            <ul>   
+                <li className="top"><b> ניהול נושאים </b></li>
+                <li className="item"><Link className="link" to="admin/GetSubjects">הצגת נושאים</Link></li>
+                <li className="item"><Link className="link" to="admin/CreateSubjects">יצירת נושאים</Link></li>
+                <li className="item"><Link className="link" to="admin/PatchSubjects">עריכת נושאים</Link></li>
+                <li className="item"><Link className="link" to="admin/DeleteSubjects">מחיקת נושאים</Link></li> 
+            </ul>
+            <ul>
+                <li className="top"><b> ניהול מקצועות </b></li>
+                <li className="item"><Link className="link" to="admin/GetProfessions">הצגת מקצועות</Link></li>
+                <li className="item"><Link className="link" to="admin/CreateProfessions">יצירת מקצועות</Link></li>
+                <li className="item"><Link className="link" to="admin/PatchProfessions">עריכת מקצועות</Link></li>
+                <li className="item"><Link className="link" to="admin/DeleteProfessions">מחיקת מקצועות</Link></li>
+            </ul>   
             
-            <button>גישה לאתר</button>
+            <Link className="BTN" to="/">גישה לאתר</Link>
         </nav>
     )
 }

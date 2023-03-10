@@ -25,6 +25,7 @@ function Login({cb}){
                     })  
                 });
                 const data = await response.json();
+                console.log(data);
                 setLogin(data);
     
                if((typeof data.token !== 'undefined' && data.token !== "")){

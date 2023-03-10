@@ -1,13 +1,20 @@
 import React from "react";
+import { Routes, Route } from 'react-router-dom';
 import '../styles/main.css';
-import NavBar from './NavBar';
-import Body from "./Body";
+
+import Home from "./Home"
+import Admin from "./Admin"
+
+
 
 function Main(){
     return (
       <div id="main">
-        <NavBar />
-        <Body />
+        <Routes>
+            <Route path="/" element = {<Home/>}/>
+            <Route path="/admin/*" element = {<Admin/>}/>
+            <Route path="/author" element = {<Home/>}/>
+        </Routes>
       </div>   
     )
 }

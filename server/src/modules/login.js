@@ -8,28 +8,32 @@ const userLogin = require('../modules/users');
 const bcryptPromise = util.promisify(bcrypt.compare);
 
 let token = "";
-let userEmail;
+/*let userEmail;
 let userId;
-let levelUser;
+let image;
+let levelUser;*/
 
 exports.userLogin = async (email, password) => {
         let [user , _] = await userLogin.login(email);
         if(user.length === 0){
             return  {message: "User does not exist in the system"};
         };
-        userEmail = user[0].email;
+       /* userEmail = user[0].email;
         userId = user[0].user_id;
-        levelUser = user[0].level;
+        image = user[0].image;
+        levelUser = user[0].level;*/
+        console.log(user[0]);
         const userIsLogin = await bcryptPromise(password, user[0].password);
         if(userIsLogin){
               token = jwt.sign({
-                id: userId,
-                email: userEmail
+                id: user[0].user_id,
+                email: user[0].email
             }, process.env.JWT_KEY);
 
             return { 
                 message: "Auth successful",
-                token: token
+                token: token,
+                level: user[0].level
             };
         };
 
@@ -37,7 +41,7 @@ exports.userLogin = async (email, password) => {
         
 };
 
-exports.getUserEmail = () => {
+/*exports.getUserEmail = () => {
     return userEmail;
 };
 
@@ -51,6 +55,6 @@ exports.GetUserId = () => {
 
 exports.getLevelUser = () => {
     return levelUser;
-}
+}*/
 
 

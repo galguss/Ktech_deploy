@@ -1,9 +1,9 @@
 Footer{
     margin-top: 100px;
     width: 96%;
-    height: 80px;
+    height: 50px;
     margin: auto;
-    background-color: blue;
+    background-color: #C9EAFF;
     color: white;
     display: flex;
     align-items: center;
@@ -18,12 +18,14 @@ Footer #A_creator{
     justify-content: space-around;
 }
 
-Footer #A_creator > a{
-    text-decoration: none;
-    font-size: 30px;
-    color: white;
+Footer p{
+    font-size: 24.6px;
+    color: black;
+    margin: auto 0;
 }
 
-Footer p{
-    margin: auto 0;
+Footer p > a{
+    text-decoration: none;
+    color: black;
+
 }

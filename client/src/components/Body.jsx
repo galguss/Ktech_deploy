@@ -29,22 +29,22 @@ function Body(){
       <div id="body">
         <Routes>
           <Route  path="/" element = {<Login cb={setLogged} />} />
-          <Route path="/getUsers" element={<GetUsers isLogged={Logged} />} />
-          <Route path="/CreateUsers" element={<CreateUsers isLogged={Logged} />} />
-          <Route path="/PatchUsers" element={<PatchUsers isLogged={Logged} />} />
-          <Route path="/DeleteUsers" element={<DeleteUsers isLogged={Logged} />} />
-          <Route path="/GetArticles" element={<GetArticles isLogged={Logged} />} />
-          <Route path="/CreateArticles" element={<CreateArticles isLogged={Logged} />} />
-          <Route path="/PatchArticles" element={<PatchArticles isLogged={Logged} />} />
-          <Route path="/DeleteArticles" element={<DeleteArticles isLogged={Logged} />} />
-          <Route path="/GetSubjects" element={<GetSubjects isLogged={Logged} />} />
-          <Route path="/CreateSubjects" element={<CreateSubjects isLogged={Logged} />} />
-          <Route path="/PatchSubjects" element={<PatchSubjects isLogged={Logged} />} />
-          <Route path="/DeleteSubjects" element={<DeleteSubjects isLogged={Logged} />} />
-          <Route path="/GetProfessions" element={<GetProfessions isLogged={Logged} />} />
-          <Route path="/CreateProfessions" element={<CreateProfessions isLogged={Logged} />} />
-          <Route path="/PatchProfessions" element={<PatchProfessions isLogged={Logged} />} />
-          <Route path="/DeleteProfessions" element={<DeleteProfessions isLogged={Logged} />} />
+          <Route path="admin/getUsers" element={<GetUsers isLogged={Logged} />} />
+          <Route path="admin/CreateUsers" element={<CreateUsers isLogged={Logged} />} />
+          <Route path="admin/PatchUsers" element={<PatchUsers isLogged={Logged} />} />
+          <Route path="admin/DeleteUsers" element={<DeleteUsers isLogged={Logged} />} />
+          <Route path="admin/GetArticles" element={<GetArticles isLogged={Logged} />} />
+          <Route path="admin/CreateArticles" element={<CreateArticles isLogged={Logged} />} />
+          <Route path="admin/PatchArticles" element={<PatchArticles isLogged={Logged} />} />
+          <Route path="admin/DeleteArticles" element={<DeleteArticles isLogged={Logged} />} />
+          <Route path="admin/GetSubjects" element={<GetSubjects isLogged={Logged} />} />
+          <Route path="admin/CreateSubjects" element={<CreateSubjects isLogged={Logged} />} />
+          <Route path="admin/PatchSubjects" element={<PatchSubjects isLogged={Logged} />} />
+          <Route path="admin/DeleteSubjects" element={<DeleteSubjects isLogged={Logged} />} />
+          <Route path="admin/GetProfessions" element={<GetProfessions isLogged={Logged} />} />
+          <Route path="admin/CreateProfessions" element={<CreateProfessions isLogged={Logged} />} />
+          <Route path="admin/PatchProfessions" element={<PatchProfessions isLogged={Logged} />} />
+          <Route path="admin/DeleteProfessions" element={<DeleteProfessions isLogged={Logged} />} />
         </Routes>
       </div>
     )
