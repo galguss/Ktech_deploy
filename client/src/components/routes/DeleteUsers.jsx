@@ -35,11 +35,7 @@ function DeleteUsers({isLogged}){
 
     }
 
-    if(!isLogged){
-        return (<>
-            <p>Must be logged in to the system</p>
-        </>)
-    }else{
+    
         return (
             <>
                 <form>
@@ -51,7 +47,7 @@ function DeleteUsers({isLogged}){
                 <p>{Delete.message}</p>
             </>
         )
-    }
+    
     
    
 }

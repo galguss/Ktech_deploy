@@ -4,22 +4,24 @@ const express = require('express');
 const router = express.Router();
 
 const User = require('../modules/users');
-const { Console } = require('console');
+const checkAdmin = require('../middlewares/checkAdmin');
+const checkAuth = require('../middlewares/checkAuth');
+const upload = require('../middlewares/upload');
 
 const bcryptHash = util.promisify(bcrypt.hash);
 
 
-router.get('/', async (req, res) => {
+router.get('/', checkAuth,async (req, res) => {
     try {
         let [users, _] = await User.getAllUsers();
-        res.status(200).send(users);
+        res.status(200).json(users);
     } catch (error) {
         console.log(error);
     }
 });
 
 
-router.post('/', async (req,res) => {
+router.post('/', checkAdmin, async (req,res) => {
     try {
         const { email, password, github, fullName, level } = req.body;
 
@@ -31,21 +33,42 @@ router.post('/', async (req,res) => {
     }
 });
 
-router.patch('/', async (req, res) => {
+router.patch('/', checkAuth, upload.single('image'), async (req, res) => {
     try {
-        const { column, oldValue, newValue } = req.body;
-        if(column === "password"){
-            const newPassword = await bcryptHash(newValue, 10);
-            await User.updateUser(column, oldValue, newPassword);
+        const { column, oldValue, newValue, user_id, levelU } = req.body;
+        if(levelU !== "a" || levelU !== "A"){
+            const {filename: image} = req.file;
+            let pathImage = "";
+            if(typeof image !== 'undefined'){
+                pathImage = `/uploads/${image}`;
+                await User.saveImage(pathImage, user_id);
+            }
+
+            if(typeof newValue !== 'undefined'){
+                const newPassword = await bcryptHash(newValue, 10);
+                await User.updatePasUser(user_id, newPassword);
+            }
+
+            res.status(200).json({
+                message: "password updeted",
+            });
+        }else{
+            if(column === "password"){
+                const newPassword = await bcryptHash(newValue, 10);
+                await User.updateUser(column, oldValue, newPassword);
+            }
+            await User.updateUser(column, oldValue, newValue);
+            res.status(201).json({ message: 'user updated'});
         }
-        await User.updateUser(column, oldValue, newValue);
-        res.status(201).json({ message: 'user updated'});
+        
     } catch (error) {
+        console.log(error);
         res.status(401).json({ message: 'updated failed'});
     }
 });
 
-router.delete('/', async ( req, res ) => {
+
+router.delete('/', checkAdmin, async ( req, res ) => {
     try {
         const { userEmail } = req.body;
         const userEmails = await User.getUserName();

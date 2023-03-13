@@ -25,13 +25,22 @@ exports.updateUser = async (column, oddValue ,newValue) => {
     return db.execute(sql);
 }
 
+exports.updatePasUser = (userID ,newValue) => {
+    let sql = `UPDATE users SET password = '${newValue}' WHERE user_id = '${userID}';`;
+    return db.execute(sql);
+}
+exports.saveImage = (image, id) => {
+    const sql_page = `UPDATE users SET image = '${image}' WHERE user_id = ${id}`;
+    return db.execute(sql_page);
+}
+
 exports.deleteUser = (id) => {
     let sql = `DELETE FROM users WHERE user_id = ${id};`;
     return db.execute(sql);
 }
 
 exports.login =(email) => {
-    let sql = `SELECT user_id, email, password, level FROM users WHERE email = '${email}';`;
+    let sql = `SELECT * FROM users WHERE email = '${email}';`;
     return db.execute(sql);
 }
 

@@ -3,7 +3,7 @@ const router = express.Router();
 
 const upload = require('../middlewares/upload');
 const checkAdmin = require('../middlewares/checkAdmin');
-const checkAuth = require('../middlewares/checkAdmin');
+const checkAuth = require('../middlewares/checkAuth');
 
 
 const article = require('../modules/articles');
@@ -12,7 +12,7 @@ const subjects = require('../modules/subjects');
 const professions = require('../modules/professions');
 const pages = require('../modules/pages');
 
-router.get('/', async (req, res) => {
+router.get('/', checkAuth, async (req, res) => {
     try {
        let user = await users.getUserName();
        let subject = await subjects.getAllSubject();

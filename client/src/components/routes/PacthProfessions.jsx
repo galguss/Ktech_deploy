@@ -37,11 +37,7 @@ function PacthProfession({isLogged}){
 
     }
 
-    if(!isLogged){
-        return (<>
-            <p>Must be logged in to the system</p>
-        </>)
-    }else{
+    
         return (
             <>
                 <form>
@@ -54,7 +50,7 @@ function PacthProfession({isLogged}){
                 <p>{Patch.message}</p>
             </>
         )
-    }
+    
     
    
 }

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import DataTable from 'react-data-table-component';
 import '../../styles/routesStyle/getUsers.css';
 
-function GetUsers({ isLogged }){
+function GetUsers(){
     const [users, setUsers] = useState([{}]);
 
     const colums = [
@@ -45,14 +45,7 @@ function GetUsers({ isLogged }){
         
     }
 
-        if(!isLogged){
-            
-            return (
-                <>
-                    <p>Must be logged in to the system</p>
-                </>
-            )
-        }else {
+        
             return(
        
                 <div id='userTable'>
@@ -64,7 +57,7 @@ function GetUsers({ isLogged }){
                 <button onClick={fetchUsersData}><b>Get Users</b></button>
                 </div>       
         )
-    }  
+     
 }
 
 export default GetUsers;

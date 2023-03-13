@@ -34,11 +34,7 @@ function DeleteProfession({isLogged}){
 
     }
 
-    if(!isLogged){
-        return (<>
-            <p>Must be logged in to the system</p>
-        </>)
-    }else{
+   
         return (
             <>
                 <form>
@@ -50,7 +46,7 @@ function DeleteProfession({isLogged}){
                 <p>{Delete.message}</p>
             </>
         )
-    }
+    
     
    
 }

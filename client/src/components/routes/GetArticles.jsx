@@ -65,14 +65,7 @@ function GetArticles({ isLogged }){
         
     }
 
-        if(!isLogged){
-            
-            return (
-                <>
-                    <p>Must be logged in to the system</p>
-                </>
-            )
-        }else {
+       
             return(
        
                 <div id='userTable'>
@@ -84,7 +77,7 @@ function GetArticles({ isLogged }){
                 <button onClick={fetchArticlesData}><b>Get Articles</b></button>
                 </div>       
         )
-    }  
+     
 }
 
 export default GetArticles;

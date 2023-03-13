@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../../styles/routesStyle/login.css';
-function Login({cb}){
+
+function Login({callback}){
     const navigate = useNavigate();
     const [Login, setLogin] = useState('All fields must be filled');
-
     async function SubmitLogin(){
 
         const InputEmail = document.getElementById('email');
@@ -25,12 +25,15 @@ function Login({cb}){
                     })  
                 });
                 const data = await response.json();
-                console.log(data);
                 setLogin(data);
-    
-               if((typeof data.token !== 'undefined' && data.token !== "")){
-                cb(() => true);
-                navigate('/GetArticles');
+                if((typeof data.token !== 'undefined' && data.token !== "")){
+                    if(data.level === "A")
+                    navigate('/admin');
+                    else{
+                        callback(data);
+                        navigate('/author');
+                    }
+
                }
             }
         } catch (error) {

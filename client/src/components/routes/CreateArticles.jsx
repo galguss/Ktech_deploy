@@ -3,7 +3,7 @@ import '../../styles/routesStyle/login.css';
 
 import Menu from "../Menu";
 
-function CreateArticles({isLogged}){
+function CreateArticles(){
     const [Create, setCeate] = useState('All fields must be filled');
     
     async function SubmitCeate(){
@@ -36,11 +36,6 @@ function CreateArticles({isLogged}){
 
     }
 
-    if(!isLogged){
-        return (<>
-            <p>Must be logged in to the system</p>
-        </>)
-    }else{
         return (
             <>
                 <form id='articleForm'>
@@ -57,7 +52,7 @@ function CreateArticles({isLogged}){
                 <p>{Create.message}</p>
             </>
         )
-    }
+    
     
    
 }

@@ -25,14 +25,7 @@ function GetProfessions({ isLogged }){
         setProfessions(prof);
     }
 
-        if(!isLogged){
-            
-            return (
-                <>
-                    <p>Must be logged in to the system</p>
-                </>
-            )
-        }else {
+        
             return(
        
                 <div id='userTable'>
@@ -44,7 +37,7 @@ function GetProfessions({ isLogged }){
                 <button onClick={fetchProfessionsData}><b>Get Professions</b></button>
                 </div>       
         )
-    }  
+      
 }
 
 export default GetProfessions;

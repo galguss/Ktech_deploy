@@ -24,14 +24,7 @@ function GetSubjects({ isLogged }){
         setSubjects(sub);
     }
 
-        if(!isLogged){
-            
-            return (
-                <>
-                    <p>Must be logged in to the system</p>
-                </>
-            )
-        }else {
+       
             return(
        
                 <div id='userTable'>
@@ -43,7 +36,7 @@ function GetSubjects({ isLogged }){
                 <button onClick={fetchSubjectsData}><b>Get Subjects</b></button>
                 </div>       
         )
-    }  
+      
 }
 
 export default GetSubjects;

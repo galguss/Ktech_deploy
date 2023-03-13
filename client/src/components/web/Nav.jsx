@@ -8,7 +8,7 @@ function Nav(){
         <nav>
             <Link className="linkN"  to="/">עמוד הבית</Link>
             <Link className="linkN" to="/">נבחרת הפותרים</Link>
-            <Link className="linkN" to ="/admin">כניסה למורשים</Link>
+            <Link className="linkN" to ="/login">כניסה למורשים</Link>
             <Link className="linkN" to = "/">שאלות ופתרונות</Link> 
         </nav>
     )

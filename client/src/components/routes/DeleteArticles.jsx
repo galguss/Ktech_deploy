@@ -33,11 +33,7 @@ function DeleteArticle({isLogged}){
 
     }
 
-    if(!isLogged){
-        return (<>
-            <p>Must be logged in to the system</p>
-        </>)
-    }else{
+    
         return (
             <>
                 <form>
@@ -48,7 +44,7 @@ function DeleteArticle({isLogged}){
                 <p>{Delete.message}</p>
             </>
         )
-    }
+    
     
    
 }

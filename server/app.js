@@ -15,7 +15,7 @@ const pages = require('./src/routes/pages');
 
 //modules and middlewares
 const Login = require('./src/modules/login');
-const checkAdmin = require('./src/middlewares/checkAdmin');
+
 
 app.use((req, res, next)=> {
     res.setHeader("Access-Control-Allow-Origin", "*");
@@ -33,6 +33,8 @@ app.listen(port, (req, res) => {
 
 app.use(express.json());
 app.use(morgan('dev'));
+
+// static folders
 const publicPath = path.join(__dirname, "./public");
 app.use(express.static(publicPath));
 const buildPath = path.join(__dirname, "../client/build");
@@ -53,7 +55,7 @@ app.post('/login', async (req, res) => {
     }
 });
 
-app.use('/admin', checkAdmin ,admin);
+app.use('/admin' ,admin);
 
 app.use('/subject', subjects);
 

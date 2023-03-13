@@ -41,11 +41,7 @@ function CreateUser({isLogged}){
 
     }
 
-    if(!isLogged){
-        return (<>
-            <p>Must be logged in to the system</p>
-        </>)
-    }else{
+    
         return (
             <>
                 <form>
@@ -60,7 +56,7 @@ function CreateUser({isLogged}){
                 <p>{Create.message}</p>
             </>
         )
-    }
+    
     
    
 }

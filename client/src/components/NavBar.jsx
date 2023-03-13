@@ -14,7 +14,7 @@ function NavBar(){
             </ul>
             <ul>
                 <li className="top"><b> ניהול שאלות </b></li>
-                <li className="item"><Link className="link" to="admin/GetArticles">הצגת שאלות</Link></li>
+                <li className="item"><Link className="link" to="/admin">הצגת שאלות</Link></li>
                 <li className="item"><Link className="link" to="admin/CreateArticles">יצירת שאלות</Link></li>
                 <li className="item"><Link className="link" to="admin/PatchArticles">עריכת שאלות</Link></li>
                 <li className="item"><Link className="link" to="admin/DeleteArticles">מחיקת שאלות</Link></li>

@@ -3,7 +3,7 @@ const userLogin = require('../modules/login');
 
 const checkAuth = (req, res, next) => {
     try {
-        if(userLogin.GetToken() !== "" && ((userLogin.getLevelUser() === "b") || (userLogin.getLevelUser() === "B") || (userLogin.getLevelUser() === "a") || (userLogin.getLevelUser() === "A"))){
+        if(userLogin.GetToken() !== ""){
             jwt.verify(userLogin.GetToken(), process.env.JWT_KEY);
             next();
         }else{
