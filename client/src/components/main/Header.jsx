@@ -1,6 +1,6 @@
 import React from "react";
-import Image from "../images/ktechedge.jpeg";
-import '../styles/header.css';
+import Image from "../../images/ktechedge.jpeg";
+import '../../styles/header.css';
 
 function Header(){
     return (

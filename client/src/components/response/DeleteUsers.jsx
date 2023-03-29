@@ -1,28 +1,29 @@
 import React, { useState } from 'react';
 import '../../styles/routesStyle/login.css';
-import Menu from '../Menu'
 
-function DeleteProfession({isLogged}){
+import Menu from "../main/Menu"
+
+function DeleteUsers({isLogged}){
     const [Delete, setDelete] = useState('All fields must be filled');
     
     
     async function SubmitDelete(){
 
-        const InputProfession = document.getElementById('professionId');
+        const InputuserEmail = document.getElementById('userId');
 
         try {
-            if((!InputProfession.value)){
+            if((!InputuserEmail.value)){
                 setDelete("Who would you like to delete?");
             }else{
-                const URL = '/profession';
+                const URL = '/admin';
                 const response = await fetch(URL, {
                     method: 'DELETE',
                     headers: {
                         'Content-Type': 'application/json'
                       },
                     body: JSON.stringify({
-                        professionData: InputProfession.value
-                    })
+                        userEmail: InputuserEmail.value
+                    })  
                 });
                 const data = await response.json();
                 setDelete(data);
@@ -34,12 +35,12 @@ function DeleteProfession({isLogged}){
 
     }
 
-   
+    
         return (
             <>
                 <form>
-                  <label><b>Profession :</b><input type="text" list='profession' name='profession' id='professionId' required/></label>
-                  <Menu item = "profession" />
+                  <label><b>User:</b><input type="email" list='users' name='userEmail' id='userId' required/></label>
+                  <Menu item ="users" />
                   <button id='submit' onClick={e => { e.preventDefault(); SubmitDelete()}}><b>submit</b></button>  
                 </form>
     
@@ -51,4 +52,4 @@ function DeleteProfession({isLogged}){
    
 }
 
-export default DeleteProfession;
+export default DeleteUsers;

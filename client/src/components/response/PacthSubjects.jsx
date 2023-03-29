@@ -1,9 +1,22 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../../styles/routesStyle/login.css';
-import Menu from "../Menu"
+import Menu from "../main/Menu"
 
 function PacthSubject({isLogged}){
     const [Patch, setPatch] = useState('All fields must be filled');
+    const [SendRes, setSendRes] = useState([]);
+    
+
+    async function getSubject(){
+        let res = await fetch("/subject");
+        let data = await res.json();
+        setSendRes(data);
+    }
+
+    useEffect(() => {
+        if(SendRes.length <= 0)
+            getSubject();      
+    }, [SendRes.length]);
     
     
     async function SubmitPatch(){
@@ -34,7 +47,7 @@ function PacthSubject({isLogged}){
         } catch (error) {
             setPatch("One or more of the fields are invalid");
         }
-
+       
     }
 
    
@@ -42,7 +55,7 @@ function PacthSubject({isLogged}){
             <>
                 <form>
                   <label><b>Subject:</b><input type="text" list='subject' name='subjectId' id='subjectId' required/></label>
-                  <Menu item = "subject"/>
+                  {console.log(SendRes) }
                   <label><b>New Value:</b><input type="text" name='newValue' id='newValue' required/></label>
                   <button id='submit' onClick={e => { e.preventDefault(); SubmitPatch()}}><b>submit</b></button>  
                 </form>

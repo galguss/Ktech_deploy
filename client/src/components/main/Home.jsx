@@ -1,10 +1,10 @@
 import React, {useState, useEffect} from "react"
-import Nav from './web/Nav';
-import Content from "./web/Content";
+import Nav from '../main/Nav';
+import Content from "../main/Content";
 import { Routes, Route } from 'react-router-dom';
 
 
-import Login from "./routes/login"
+import Login from "../response/login"
 
 function Home({callback}){
     const data = (value) => {
@@ -17,10 +17,12 @@ function Home({callback}){
     return (
         <>
             <Nav />
+            <div className="container">
             <Routes>
                 <Route path="/" element = {<Content />} />
                 <Route path="/login" element = {<Login callback = {data} />} />
-            </Routes>    
+            </Routes>
+            </div>    
         </>
     )
 }

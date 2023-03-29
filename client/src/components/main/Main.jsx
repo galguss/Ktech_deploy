@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { Routes, Route } from 'react-router-dom';
-import '../styles/main.css';
+import '../../styles/main.css';
 
 import Home from "./Home"
 import Admin from "./Admin"
-import Author from "./author/Author"
+import Author from "../author/Author"
 
 
 

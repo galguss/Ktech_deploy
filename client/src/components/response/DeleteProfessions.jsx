@@ -1,28 +1,28 @@
 import React, { useState } from 'react';
 import '../../styles/routesStyle/login.css';
-import Menu from '../Menu'
+import Menu from '../main/Menu'
 
-function DeleteSubject({isLogged}){
+function DeleteProfession({isLogged}){
     const [Delete, setDelete] = useState('All fields must be filled');
     
     
     async function SubmitDelete(){
 
-        const InputSubjectId = document.getElementById('subjectId');
+        const InputProfession = document.getElementById('professionId');
 
         try {
-            if((!InputSubjectId.value)){
+            if((!InputProfession.value)){
                 setDelete("Who would you like to delete?");
             }else{
-                const URL = '/subject';
+                const URL = '/profession';
                 const response = await fetch(URL, {
                     method: 'DELETE',
                     headers: {
                         'Content-Type': 'application/json'
                       },
                     body: JSON.stringify({
-                        subjectData: InputSubjectId.value
-                    })  
+                        professionData: InputProfession.value
+                    })
                 });
                 const data = await response.json();
                 setDelete(data);
@@ -34,12 +34,12 @@ function DeleteSubject({isLogged}){
 
     }
 
-  
+   
         return (
             <>
                 <form>
-                  <label><b>Subject:</b><input type="text" list='subject' name='subjectId' id='subjectId' required/></label>
-                  <Menu item = "subject" />
+                  <label><b>Profession :</b><input type="text" list='profession' name='profession' id='professionId' required/></label>
+                  <Menu item = "profession" />
                   <button id='submit' onClick={e => { e.preventDefault(); SubmitDelete()}}><b>submit</b></button>  
                 </form>
     
@@ -51,4 +51,4 @@ function DeleteSubject({isLogged}){
    
 }
 
-export default DeleteSubject;
+export default DeleteProfession;

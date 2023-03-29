@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import '../../styles/routesStyle/login.css';
 
-import Menu from "../Menu";
+import Menu from "../main/Menu";
 
 function CreateArticles(){
     const [Create, setCeate] = useState('All fields must be filled');

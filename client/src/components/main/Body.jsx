@@ -1,23 +1,23 @@
 import React from "react";
 import { Routes, Route } from 'react-router-dom';
 
-import GetUsers from './routes/GetUsers';
-import CreateUsers from './routes/CreateUsers';
-import PatchUsers from './routes/PacthUsers';
-import DeleteUsers from './routes/DeleteUsers';
-import GetArticles from './routes/GetArticles';
-import CreateArticles from './routes/CreateArticles';
-import PatchArticles from './routes/PacthArticles';
-import DeleteArticles from './routes/DeleteArticles';
-import GetSubjects from './routes/GetSubjects';
-import CreateSubjects from './routes/CreateSubjects';
-import PatchSubjects from './routes/PacthSubjects';
-import DeleteSubjects from './routes/DeleteSubject';
-import GetProfessions from './routes/GetProfessions';
-import CreateProfessions from './routes/CreateProfessions';
-import PatchProfessions from './routes/PacthProfessions';
-import DeleteProfessions from './routes/DeleteProfessions';
-import '../styles/body.css';
+import GetUsers from '../response/GetUsers';
+import CreateUsers from '../response/CreateUsers';
+import PatchUsers from '../response/PacthUsers';
+import DeleteUsers from '../response/DeleteUsers';
+import GetArticles from '../response/GetArticles';
+import CreateArticles from '../response/CreateArticles';
+import PatchArticles from '../response/PacthArticles';
+import DeleteArticles from '../response/DeleteArticles';
+import GetSubjects from '../response/GetSubjects';
+import CreateSubjects from '../response/CreateSubjects';
+import PatchSubjects from '../response/PacthSubjects';
+import DeleteSubjects from '../response/DeleteSubject';
+import GetProfessions from '../response/GetProfessions';
+import CreateProfessions from '../response/CreateProfessions';
+import PatchProfessions from '../response/PacthProfessions';
+import DeleteProfessions from '../response/DeleteProfessions';
+import '../../styles/body.css';
 
 
 

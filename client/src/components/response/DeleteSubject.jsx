@@ -1,28 +1,27 @@
 import React, { useState } from 'react';
 import '../../styles/routesStyle/login.css';
+import Menu from '../main/Menu'
 
-import Menu from "../Menu"
-
-function DeleteUsers({isLogged}){
+function DeleteSubject({isLogged}){
     const [Delete, setDelete] = useState('All fields must be filled');
     
     
     async function SubmitDelete(){
 
-        const InputuserEmail = document.getElementById('userId');
+        const InputSubjectId = document.getElementById('subjectId');
 
         try {
-            if((!InputuserEmail.value)){
+            if((!InputSubjectId.value)){
                 setDelete("Who would you like to delete?");
             }else{
-                const URL = '/admin';
+                const URL = '/subject';
                 const response = await fetch(URL, {
                     method: 'DELETE',
                     headers: {
                         'Content-Type': 'application/json'
                       },
                     body: JSON.stringify({
-                        userEmail: InputuserEmail.value
+                        subjectData: InputSubjectId.value
                     })  
                 });
                 const data = await response.json();
@@ -35,12 +34,12 @@ function DeleteUsers({isLogged}){
 
     }
 
-    
+  
         return (
             <>
                 <form>
-                  <label><b>User:</b><input type="email" list='users' name='userEmail' id='userId' required/></label>
-                  <Menu item ="users" />
+                  <label><b>Subject:</b><input type="text" list='subject' name='subjectId' id='subjectId' required/></label>
+                  <Menu item = "subject" />
                   <button id='submit' onClick={e => { e.preventDefault(); SubmitDelete()}}><b>submit</b></button>  
                 </form>
     
@@ -52,4 +51,4 @@ function DeleteUsers({isLogged}){
    
 }
 
-export default DeleteUsers;
+export default DeleteSubject;
