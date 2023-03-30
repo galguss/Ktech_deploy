@@ -7,6 +7,12 @@
   text-align: center;
 }
 
+.body-web{
+  display: flex;
+  width: 100%;
+  min-height: 80vh;
+}
+
 .response{
   display: flex;
   flex-direction: column;
@@ -32,7 +38,7 @@
     background-color: #3a842b;
     font-size: 24px;
     margin: auto;
-    width: 40%;
+    width: 60%;
     height: 40px;
     border: white solid 3px;
     border-radius: 30px;
@@ -41,8 +47,8 @@
 }
 
 .container{
-  width: 100%;
   min-height: 520px;
+  width: 70%;
   display: flex;
   align-items: center;
   justify-content: center;

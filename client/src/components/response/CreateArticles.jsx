@@ -1,24 +1,41 @@
-import React, { useState } from 'react';
-import '../../styles/routesStyle/login.css';
+import React, { useState, useEffect } from 'react';
 
 import Menu from "../main/Menu";
+import Input from "../main/Input";
 
 function CreateArticles(){
     const [Create, setCeate] = useState('All fields must be filled');
+    const [valSub, setValSub] = useState("");
+    const [valProf, setValProf] = useState("");
+    const [valSAQ, setValSAQ] = useState("");
+    const [valLevel, setValLevel] = useState("");
+    const [valFile, setValFile] = useState("");
+
+    const [lisetSub, setListSub] = useState([]);
+    const [lisetProf, setListProf] = useState([]);
+
+    async function getSubjects(){
+        const URL = "/subject";
+        const res = await fetch(URL);
+        setListSub(await res.json());
+    }
+
+    async function getProfession(){
+        const URL = "/profession";
+        const res = await fetch(URL);
+        setListProf(await res.json());
+    }
+
+    useEffect(()=> {getSubjects(); getProfession()}, []);
     
     async function SubmitCeate(){
-        const InputSubjectId = document.getElementById('subjectId');
-        const InputProfessionId = document.getElementById('professionId');
-        const InputSeasonAndQuestionNumner = document.getElementById('SQN');
-        const InputLevel = document.getElementById('level');
-         const InputUpLoadFile = document.getElementById('file').files[0];
-        const formArticle = document.getElementById('articleForm');
         try {
-            if((!InputSubjectId.value) || (!InputProfessionId.value) || (!InputSeasonAndQuestionNumner.value) || (!InputLevel.value)){
-                setCeate("Please check the fields");
-            }else{
-                const formData = new FormData(formArticle);
-                formData.append('page', InputUpLoadFile);
+                const formData = new FormData();
+                formData.append('subjectValue', valSub);
+                formData.append('professionValue', valProf);
+                formData.append('season_and_Question_numner', valSAQ);
+                formData.append('level', valLevel);
+                formData.append('page', valFile);
 
                 const URL = '/articles';
                 const response = await fetch(URL, 
@@ -28,8 +45,6 @@ function CreateArticles(){
                     });
                     const data = await response.json();
                 setCeate(data);
-                
-            }
         } catch (error) {
             setCeate("One or more of the fields are invalid");
         }
@@ -37,20 +52,17 @@ function CreateArticles(){
     }
 
         return (
-            <>
-                <form id='articleForm'>
-                  <label><b>subject:</b><input type="text" list='subject' name='subjectValue' id='subjectId' required/></label>
-                  <Menu item = "subject" />
-                  <label><b>profession:</b><input type="text" list='profession' name='professionValue' id='professionId' required/></label>
-                  <Menu item = "profession" />
-                  <label><b>Season <br /> And <br /> Question Numner:</b><input type="text" name='season_and_Question_numner' id='SQN' required/></label>
-                  <label><b>Level:</b><input type="text" name='level' id='level' required/></label>
-                  <label><b></b><input type="file" id='file' /></label>
-                  <button id='submit' onClick={e => { e.preventDefault(); SubmitCeate()}} ><b>submit</b></button>  
-                </form>
-
-                <p>{Create.message}</p>
-            </>
+            <div className='response'>
+                <Input label= "Subject" type="text" list="subject" handleValue={(val) => setValSub(val)} />
+                <Menu items ={lisetSub} nameInput = "subject" val = "subject" />
+                <Input label= "Profession" type="text" list="profession" handleValue={(val) => setValProf(val)} />
+                <Menu items ={lisetProf} nameInput = "profession" val = "profession" />
+                <Input label= "Season And Question Numner" type="text" handleValue={(val) => setValSAQ(val)} />
+                <Input label= "Level" type="text" handleValue={(val) => setValLevel(val)} />
+                <Input label= "File" type="file" handleValue={(val) => setValFile(val)} />
+                <p className='chatBox'>{Create.message}</p>
+                <button className='btn' onClick={() => {SubmitCeate()}} ><b>submit</b></button>  
+            </div>
         )
     
     

@@ -5,10 +5,10 @@ import NavBar from "./NavBar"
 
 function Admin(){
     return(
-        <>
-         <NavBar />
-         <Body />
-        </>
+    <div className="body-web">
+        <NavBar />
+        <Body />
+    </div>
     )
 }
 

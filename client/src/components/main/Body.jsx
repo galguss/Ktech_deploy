@@ -23,7 +23,7 @@ import '../../styles/body.css';
 
 function Body(){
     return (
-      <div id="body">
+      <div className="container">
         <Routes>
           <Route path="admin/getUsers" element={<GetUsers />} />
           <Route path="admin/CreateUsers" element={<CreateUsers  />} />

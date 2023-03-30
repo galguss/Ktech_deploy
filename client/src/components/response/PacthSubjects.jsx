@@ -1,34 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import '../../styles/routesStyle/login.css';
+
+import Input from '../main/Input'
 import Menu from "../main/Menu"
 
-function PacthSubject({isLogged}){
+function PacthSubject(){
     const [Patch, setPatch] = useState('All fields must be filled');
-    const [SendRes, setSendRes] = useState([]);
-    
+    const [DataList, setDataList] = useState([]);
+    const [ValSub, SetValSub] = useState();
+    const [newVal, SetNewVal] = useState();
 
     async function getSubject(){
         let res = await fetch("/subject");
-        let data = await res.json();
-        setSendRes(data);
+        setDataList(await res.json());
     }
 
-    useEffect(() => {
-        if(SendRes.length <= 0)
-            getSubject();      
-    }, [SendRes.length]);
-    
+    useEffect(() => {getSubject()}, []);
     
     async function SubmitPatch(){
-
-        
-        const InputSubjectId = document.getElementById('subjectId');
-        const InputNewValue = document.getElementById('newValue');
-
         try {
-            if((!InputSubjectId.value) || (!InputNewValue.value)){
-                setPatch("Please check the fields");
-            }else{
                 const URL = '/subject';
                 const response = await fetch(URL, {
                     method: 'PATCH',
@@ -36,31 +26,28 @@ function PacthSubject({isLogged}){
                         'Content-Type': 'application/json'
                       },
                     body: JSON.stringify({
-                        subjectData: InputSubjectId.value,
-                        newValue: InputNewValue.value
+                        subjectData: ValSub,
+                        newValue: newVal
                     })  
                 });
                 const data = await response.json();
                 setPatch(data);
                 
-            }
+            
         } catch (error) {
             setPatch("One or more of the fields are invalid");
         }
        
     }
-
-   
         return (
             <>
-                <form>
-                  <label><b>Subject:</b><input type="text" list='subject' name='subjectId' id='subjectId' required/></label>
-                  {console.log(SendRes) }
-                  <label><b>New Value:</b><input type="text" name='newValue' id='newValue' required/></label>
-                  <button id='submit' onClick={e => { e.preventDefault(); SubmitPatch()}}><b>submit</b></button>  
-                </form>
-    
-                <p>{Patch.message}</p>
+                <div className='response'>
+                  <Input label = "Subject" list = "subject" type = 'text' handleValue = {(val) => SetValSub(val)} />
+                  <Menu items = {DataList} val="subject" nameInput = "subject"/>
+                  <Input label = "New Subject" type = 'text' handleValue = {(val) => SetNewVal(val)} />
+                  <p className='chatBox'>{Patch.message}</p>
+                  <button className='btn' onClick={() => { SubmitPatch(); }}><b>submit</b></button>  
+                </div>
             </>
         )
     
