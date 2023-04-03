@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react"
 
-function Profile({ item })
+function Profile()
 {
     const [Message, setMessage] = useState("status");
     useEffect(() => {
@@ -25,8 +25,8 @@ function Profile({ item })
                     setMessage("השדות לא זהים");
                 }
             }
-            formData.append('user_id', item.user_id);
-            formData.append('levelU', item.level);
+           /* formData.append('user_id', item.user_id);
+            formData.append('levelU', item.level);*/
             
             if(typeof fileImage.files[0] !== 'undefined')
             {
@@ -50,7 +50,7 @@ function Profile({ item })
     return(
         <div id="contprofile">
             <div id="profileImg">
-                <div id="imageP"><img src={item.image} width ="100%" alt="imageProfile" /></div>
+                <div id="imageP"></div>
                 <input type="file" id ="file" /> 
             </div>
 
