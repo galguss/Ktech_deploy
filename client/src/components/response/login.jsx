@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { userLogin } from "../../redux/reducers/userReducers";
-import "../../styles/routesStyle/login.css";
 
 import Input from "../main/Input";
 
@@ -15,10 +14,8 @@ function Login() {
 
   useEffect(() => {
     if (typeof Login !== "string") {
-      if (Login.level === "A") 
-      navigate("/admin");
-      else
-       navigate("/author");
+      if (Login.level === "A") navigate("/admin");
+      else navigate("/author");
     }
   }, [Login]);
 

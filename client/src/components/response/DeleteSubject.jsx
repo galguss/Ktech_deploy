@@ -1,54 +1,65 @@
-import React, { useState } from 'react';
-import '../../styles/routesStyle/login.css';
-import Menu from '../main/Menu'
+import React, { useEffect, useState } from "react";
 
-function DeleteSubject({isLogged}){
-    const [Delete, setDelete] = useState('All fields must be filled');
-    
-    
-    async function SubmitDelete(){
+import Input from "../main/Input";
+import Menu from "../main/Menu";
 
-        const InputSubjectId = document.getElementById('subjectId');
+function DeleteSubject() {
+  const [Delete, setDelete] = useState("All fields must be filled");
+  const [InputVal, setInputVal] = useState("");
+  const [ListData, setListData] = useState([]);
 
-        try {
-            if((!InputSubjectId.value)){
-                setDelete("Who would you like to delete?");
-            }else{
-                const URL = '/subject';
-                const response = await fetch(URL, {
-                    method: 'DELETE',
-                    headers: {
-                        'Content-Type': 'application/json'
-                      },
-                    body: JSON.stringify({
-                        subjectData: InputSubjectId.value
-                    })  
-                });
-                const data = await response.json();
-                setDelete(data);
-                
-            }
-        } catch (error) {
-            setDelete("Something has gone wrong");
-        }
+  async function getSubjects() {
+    const URL = "/subject";
+    const res = await fetch(URL);
+    setListData(await res.json());
+  }
 
+  useEffect(() => {
+    getSubjects();
+  }, []);
+
+  async function SubmitDelete() {
+    try {
+      const URL = "/subject";
+      const response = await fetch(URL, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          subjectData: InputVal,
+        }),
+      });
+      const data = await response.json();
+      setDelete(data);
+    } catch (error) {
+      setDelete("Something has gone wrong");
     }
+  }
 
-  
-        return (
-            <>
-                <form>
-                  <label><b>Subject:</b><input type="text" list='subject' name='subjectId' id='subjectId' required/></label>
-                  <Menu item = "subject" />
-                  <button id='submit' onClick={e => { e.preventDefault(); SubmitDelete()}}><b>submit</b></button>  
-                </form>
-    
-                <p>{Delete.message}</p>
-            </>
-        )
-    
-    
-   
+  return (
+    <>
+      <div className="response">
+        <Input
+          label="Subject"
+          type="text"
+          list="subject"
+          handleValue={(val) => setInputVal(val)}
+        />
+        <Menu items={ListData} nameInput="subject" val="subject" />
+        <p className="chatBox">{Delete.message}</p>
+
+        <button
+          className="btn"
+          onClick={() => {
+            SubmitDelete();
+          }}
+        >
+          <b>Delete</b>
+        </button>
+      </div>
+    </>
+  );
 }
 
 export default DeleteSubject;

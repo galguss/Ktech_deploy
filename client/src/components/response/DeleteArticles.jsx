@@ -1,52 +1,45 @@
-import React, { useState } from 'react';
-import '../../styles/routesStyle/login.css';
+import React, { useState } from "react";
+import Input from "../main/Input";
 
-function DeleteArticle({isLogged}){
-    const [Delete, setDelete] = useState('All fields must be filled');
-    
-    
-    async function SubmitDelete(){
 
-        const InputArticleId = document.getElementById('ArticleId');
+function DeleteArticle() {
+  const [Delete, setDelete] = useState("All fields must be filled");
+  const [InputId, setInputId] = useState("");
 
-        try {
-            if((!InputArticleId.value)){
-                setDelete("Who would you like to delete?");
-            }else{
-                const URL = '/articles';
-                const response = await fetch(URL, {
-                    method: 'DELETE',
-                    headers: {
-                        'Content-Type': 'application/json'
-                      },
-                    body: JSON.stringify({
-                        id:InputArticleId.value
-                    })  
-                });
-                const data = await response.json();
-                setDelete(data);
-                
-            }
-        } catch (error) {
-            setDelete("Something has gone wrong");
-        }
-
+  async function SubmitDelete() {
+    try {
+      const URL = "/articles";
+      const response = await fetch(URL, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id: InputId,
+        }),
+      });
+      const data = await response.json();
+      setDelete(data);
+    } catch (error) {
+      setDelete("Something has gone wrong");
     }
+  }
 
-    
-        return (
-            <>
-                <form>
-                  <label><b>Article Id:</b><input type="number" name='ArticleId' id='ArticleId' required/></label>
-                  <button id='submit' onClick={e => { e.preventDefault(); SubmitDelete()}}><b>submit</b></button>  
-                </form>
-    
-                <p>{Delete.message}</p>
-            </>
-        )
-    
-    
-   
+  return (
+    <>
+      <div className="response">
+        <Input
+          label="Article ID"
+          type="number"
+          handleValue={(val) => setInputId(val)}
+        />
+        <p className="chatBox">{Delete.message}</p>
+        <button className="btn" onClick={() => SubmitDelete()}>
+          <b>Delete</b>
+        </button>
+      </div>
+    </>
+  );
 }
 
 export default DeleteArticle;
