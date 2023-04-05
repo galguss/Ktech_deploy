@@ -11,7 +11,7 @@ import PraivteComponents from "./PraivteComponents";
 function Main() {
   const stateGlobal = useSelector(state => state.Login.value);
   return (
-    <div id="main">
+    <div className="main">
       <Routes>
         <Route path="*" element={<Home />} />
         <Route element={<PraivteComponents />}>

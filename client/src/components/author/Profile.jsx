@@ -1,69 +1,89 @@
-import React, {useState, useEffect} from "react"
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
 
-function Profile()
-{
-    const [Message, setMessage] = useState("status");
-    useEffect(() => {
-        setMessage("");
-    }, []);
-    let password1 = "";
-    let password2 = "";
-    const boxMessage = document.getElementById('messageBox');
-    const fileImage = document.getElementById('file');
-    async function submitPass(){
-        try {
-            const formData = new FormData();
-            if( password1 !== "" && password2 !== "")
-            {
-                if(password1 === password2)
-                {
-                    formData.append('newValue', password1);
-                    boxMessage.style.color = 'green';
-                    setMessage("סיסמה שונתה בהצלחה");
-                }else{
-                    boxMessage.style.color = 'red';
-                    setMessage("השדות לא זהים");
-                }
-            }
-           /* formData.append('user_id', item.user_id);
-            formData.append('levelU', item.level);*/
-            
-            if(typeof fileImage.files[0] !== 'undefined')
-            {
-                formData.append('image' ,fileImage.files[0]);
-            }
+import Input from "../main/Input";
 
-                const URL = "/admin";
-                const response = await fetch(URL,
-                {
-                    method: "PATCH",
-                    body: formData
-                });
-                const data = await response.json();
-                console.log(data);
+function Profile() {
+  const stateGlobal = useSelector((state) => state.Login.value);
 
-        } catch (error) {
-            console.log(error);
+  const [Message, setMessage] = useState("");
+  const [isEquals, setIsEquals] = useState(false);
+  const [InputP1, setInputP1] = useState("");
+  const [InputP2, setInputP2] = useState("");
+  const [InputFile, setInputFile] = useState("");
+  const [InputGH, setInputGH] = useState("");
+
+  async function submitPass() {
+    try {
+      const formData = new FormData();
+      if (InputP1 !== "" && InputP2 !== "") {
+        if (InputP1 === InputP2) {
+          formData.append("newValue", InputP1);
+          setMessage("סיסמה שונתה בהצלחה");
+          setIsEquals(true);
+        } else {
+          setMessage("השדות לא זהים");
+          setIsEquals(false);
         }
+      }
+
+      if (typeof InputFile !== "undefined" && InputFile !== "") {
+        formData.append("image", InputFile);
+      }
+
+      if (InputGH !== "") {
+        formData.append("github", InputGH);
+      }
+
+      const URL = "/admin";
+      const response = await fetch(URL, {
+        method: "PATCH",
+        body: formData,
+      });
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.log(error);
     }
+  }
 
-    return(
-        <div id="contprofile">
-            <div id="profileImg">
-                <div id="imageP"></div>
-                <input type="file" id ="file" /> 
-            </div>
+  return (
+    <div className="contprofile">
+      <div className="profileImg">
+        <div className="imageP">
+          <img className="profileImg" src={stateGlobal.image} />
+        </div>
+        <Input label="" type="file" handleValue={(val) => setInputFile(val)} />
+      </div>
 
-            <form id="fetchPass">
-                <h3>שינוי סיסמה</h3>
-                <label><input type="password" id="newPassword" onChange={e => password1 = e.target.value}/>:סיסמה חדשה</label>
-                <label><input type="password" id="Password" onChange={e => password2 = e.target.value}/> :אישור סיסמה</label>
-                <p id="messageBox">{Message}</p>
-                <button id='submit' onClick={e => { e.preventDefault(); submitPass();}}><b>שלח</b></button>
-            </form>
-
-        </div> 
-    )
+      <div className="response">
+        <h3 className="title">עריכת פרופיל</h3>
+        <Input
+          label="סיסמה חדשה"
+          type="password"
+          handleValue={(val) => setInputP1(val)}
+        />
+        <Input
+          label="אישור סיסמה"
+          type="password"
+          handleValue={(val) => setInputP2(val)}
+        />
+        <Input
+          label="Github"
+          type="text"
+          handleValue={(val) => setInputGH(val)}
+        />
+        <p
+          className={isEquals ? "chatBox messageSuccess" : "chatBox messageErr"}
+        >
+          {Message}
+        </p>
+        <button className="btn" onClick={() => submitPass()}>
+          <b>שלח</b>
+        </button>
+      </div>
+    </div>
+  );
 }
 
 export default Profile;

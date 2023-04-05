@@ -1,11 +1,11 @@
-#main{
+.main{
     direction: rtl;
     display: flex;
     min-height: 80vh;
     background-color: #66B1F2;
 }
 
-#contprofile{
+.contprofile{
     width: 80%;
     height: 350px;
     display: flex;
@@ -14,11 +14,12 @@
     
 }
 
-#profileImg{
-    width: 300px;
+.profileImg{
+    width: 100%;
+    border-radius: 12%;
 }
 
-#imageP{
+.imageP{
     width: 250px;
     height: 250px;
     background-image: url(../images/photo-99135_960_720.png);
@@ -30,17 +31,6 @@
     margin:20px;
 }
 
-
-
-#imageP > img{
-    border-radius: 12%;
-}
-
-#file{
-    height: 20px;
-    width: 170px;
-    margin: auto;
-}
 
 /*#fetchPass{
     

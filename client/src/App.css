@@ -48,10 +48,23 @@
 
 .container{
   min-height: 520px;
-  width: 70%;
+  width: 80%;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.title{
+  text-decoration: underline;
+  font-size: 26px;
+}
+
+.messageErr{
+  color: red;
+}
+
+.messageSuccess{
+  color: green;
 }
 /*.App-logo {
   height: 40vmin;
