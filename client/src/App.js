@@ -1,9 +1,10 @@
+
 import './App.css';
 
 //components
-import Header from './components/Header';
-import Main from './components/Main';
-import Pooter from './components/Footer';
+import Header from './components/main/Header';
+import Main from './components/main/Main';
+import Pooter from './components/main/Footer';
 
 function App() {
   return (

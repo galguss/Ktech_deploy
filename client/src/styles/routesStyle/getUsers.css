@@ -22,7 +22,8 @@
     width: 150px;
     height: 30px;
     border-radius: 6px;
-    background-color: coral;
+    border: white solid 2px;
+    background-color: #3a842b;
     color:white;
     margin-top: 10px;
 }
