@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Input from "../main/Input";
 
-
 function DeleteArticle() {
   const [Delete, setDelete] = useState("All fields must be filled");
   const [InputId, setInputId] = useState("");
@@ -27,17 +26,23 @@ function DeleteArticle() {
 
   return (
     <>
-      <div className="response">
+      <form className="response">
         <Input
           label="Article ID"
           type="number"
           handleValue={(val) => setInputId(val)}
         />
         <p className="chatBox">{Delete.message}</p>
-        <button className="btn" onClick={() => SubmitDelete()}>
+        <button
+          className="btn"
+          onClick={(e) => {
+            SubmitDelete();
+            e.preventDefault();
+          }}
+        >
           <b>Delete</b>
         </button>
-      </div>
+      </form>
     </>
   );
 }

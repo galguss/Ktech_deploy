@@ -1,20 +1,20 @@
 import React, { useState } from "react";
 import Input from "../main/Input";
 
-function CreateSubject() {
+function CreateProfession() {
   const [Create, setCeate] = useState("All fields must be filled");
   const [InputVal, setInputVal] = useState("");
 
   async function SubmitCeate() {
     try {
-      const URL = "/subject";
+      const URL = "/profession";
       const response = await fetch(URL, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          subject: InputVal,
+          profession: InputVal,
         }),
       });
       const data = await response.json();
@@ -26,19 +26,25 @@ function CreateSubject() {
 
   return (
     <>
-      <div className="response">
+      <form className="response">
         <Input
-          label="New Subject"
+          label="New Profession"
           type="text"
           handleValue={(val) => setInputVal(val)}
         />
-        <p>{Create.message}</p>
-        <button className="btn" onClick={() => SubmitCeate()}>
+        <p className="chatBox">{Create.message}</p>
+        <button
+          className="btn"
+          onClick={(e) => {
+            e.preventDefault();
+            SubmitCeate();
+          }}
+        >
           <b>Create</b>
         </button>
-      </div>
+      </form>
     </>
   );
 }
 
-export default CreateSubject;
+export default CreateProfession;

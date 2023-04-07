@@ -53,7 +53,7 @@ function CreateArticles() {
   }
 
   return (
-    <div className="response">
+    <form className="response">
       <Input
         label="Subject"
         type="text"
@@ -82,13 +82,14 @@ function CreateArticles() {
       <p className="chatBox">{Create.message}</p>
       <button
         className="btn"
-        onClick={() => {
+        onClick={(e) => {
+          e.preventDefault();
           SubmitCeate();
         }}
       >
         <b>Create</b>
       </button>
-    </div>
+    </form>
   );
 }
 

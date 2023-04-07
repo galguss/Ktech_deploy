@@ -1,22 +1,22 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 
-import GetUsers from "../response/GetUsers";
-import CreateUsers from "../response/CreateUsers";
-import PatchUsers from "../response/PacthUsers";
-import DeleteUsers from "../response/DeleteUsers";
-import GetArticles from "../response/GetArticles";
-import CreateArticles from "../response/CreateArticles";
-import PatchArticles from "../response/PacthArticles";
-import DeleteArticles from "../response/DeleteArticles";
-import GetSubjects from "../response/GetSubjects";
-import CreateSubjects from "../response/CreateSubjects";
-import PatchSubjects from "../response/PacthSubjects";
-import DeleteSubjects from "../response/DeleteSubject";
-import GetProfessions from "../response/GetProfessions";
-import CreateProfessions from "../response/CreateProfessions";
-import PatchProfessions from "../response/PacthProfessions";
-import DeleteProfessions from "../response/DeleteProfessions";
+import GetUsers from "../forms/GetUsers";
+import CreateUsers from "../forms/CreateUsers";
+import PatchUsers from "../forms/PacthUsers";
+import DeleteUsers from "../forms/DeleteUsers";
+import GetArticles from "../forms/GetArticles";
+import CreateArticles from "../forms/CreateArticles";
+import PatchArticles from "../forms/PacthArticles";
+import DeleteArticles from "../forms/DeleteArticles";
+import GetSubjects from "../forms/GetSubjects";
+import CreateSubjects from "../forms/CreateSubjects";
+import PatchSubjects from "../forms/PacthSubjects";
+import DeleteSubjects from "../forms/DeleteSubject";
+import GetProfessions from "../forms/GetProfessions";
+import CreateProfessions from "../forms/CreateProfessions";
+import PatchProfessions from "../forms/PacthProfessions";
+import DeleteProfessions from "../forms/DeleteProfessions";
 import "../../styles/body.css";
 
 function Body() {

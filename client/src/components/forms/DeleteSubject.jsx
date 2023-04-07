@@ -39,7 +39,7 @@ function DeleteSubject() {
 
   return (
     <>
-      <div className="response">
+      <form className="response">
         <Input
           label="Subject"
           type="text"
@@ -51,13 +51,14 @@ function DeleteSubject() {
 
         <button
           className="btn"
-          onClick={() => {
+          onClick={(e) => {
             SubmitDelete();
+            e.preventDefault();
           }}
         >
           <b>Delete</b>
         </button>
-      </div>
+      </form>
     </>
   );
 }

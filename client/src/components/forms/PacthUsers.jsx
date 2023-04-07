@@ -1,34 +1,24 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
-import Menu from "../main/Menu";
 import Input from "../main/Input";
 
-function PacthProfession() {
+function PacthUsers() {
   const [Patch, setPatch] = useState("All fields must be filled");
-  const [InputP, setInputP] = useState("");
+  const [InputCol, setInputCol] = useState("");
+  const [InputOldV, setInputOldV] = useState("");
   const [InputNV, setInputNV] = useState("");
-  const [ListData, setListData] = useState([]);
-
-  async function getProfession() {
-    const URL = "/profession";
-    const res = await fetch(URL);
-    setListData(await res.json());
-  }
-
-  useEffect(() => {
-    getProfession();
-  }, []);
 
   async function SubmitPatch() {
     try {
-      const URL = "/profession";
+      const URL = "/admin";
       const response = await fetch(URL, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          professionData: InputP,
+          column: InputCol,
+          oldValue: InputOldV,
           newValue: InputNV,
         }),
       });
@@ -41,14 +31,17 @@ function PacthProfession() {
 
   return (
     <>
-      <div className="response">
+      <form className="response">
         <Input
-          label="Profession"
+          label="Column"
           type="text"
-          list="profession"
-          handleValue={(val) => setInputP(val)}
+          handleValue={(val) => setInputCol(val)}
         />
-        <Menu items={ListData} nameInput="profession" val="profession" />
+        <Input
+          label="Old Value"
+          type="text"
+          handleValue={(val) => setInputOldV(val)}
+        />
         <Input
           label="New Value"
           type="text"
@@ -56,12 +49,18 @@ function PacthProfession() {
         />
 
         <p className="chatBox">{Patch.message}</p>
-        <button className="btn" onClick={() => SubmitPatch()}>
-          <b>Patch</b>
+        <button
+          className="btn"
+          onClick={(e) => {
+            e.preventDefault();
+            SubmitPatch();
+          }}
+        >
+          <b>Pacth</b>
         </button>
-      </div>
+      </form>
     </>
   );
 }
 
-export default PacthProfession;
+export default PacthUsers;

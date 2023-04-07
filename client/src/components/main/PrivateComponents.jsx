@@ -1,8 +1,8 @@
 import { Outlet, Navigate } from "react-router-dom";
 
-function PraivteComponents() {
+function PrivateComponents() {
   const isLogged = localStorage.getItem("isLogged");
   return isLogged ? <Outlet /> : <Navigate to="login" />;
 }
 
-export default PraivteComponents;
+export default PrivateComponents;
