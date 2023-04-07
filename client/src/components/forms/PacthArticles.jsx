@@ -30,7 +30,7 @@ function PacthArticles() {
 
   return (
     <>
-      <div className="response">
+      <form className="response">
         <Input
           label="ID"
           type="number"
@@ -48,10 +48,16 @@ function PacthArticles() {
         />
 
         <p className="chatBox">{Patch.message}</p>
-        <button className="btn" onClick={() => SubmitPatch()}>
+        <button
+          className="btn"
+          onClick={(e) => {
+            SubmitPatch();
+            e.preventDefault();
+          }}
+        >
           <b>Pacth</b>
         </button>
-      </div>
+      </form>
     </>
   );
 }

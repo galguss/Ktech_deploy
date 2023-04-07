@@ -1,24 +1,34 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
+import Menu from "../main/Menu";
 import Input from "../main/Input";
 
-function PacthUsers() {
+function PacthProfession() {
   const [Patch, setPatch] = useState("All fields must be filled");
-  const [InputCol, setInputCol] = useState("");
-  const [InputOldV, setInputOldV] = useState("");
+  const [InputP, setInputP] = useState("");
   const [InputNV, setInputNV] = useState("");
+  const [ListData, setListData] = useState([]);
+
+  async function getProfession() {
+    const URL = "/profession";
+    const res = await fetch(URL);
+    setListData(await res.json());
+  }
+
+  useEffect(() => {
+    getProfession();
+  }, []);
 
   async function SubmitPatch() {
     try {
-      const URL = "/admin";
+      const URL = "/profession";
       const response = await fetch(URL, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          column: InputCol,
-          oldValue: InputOldV,
+          professionData: InputP,
           newValue: InputNV,
         }),
       });
@@ -31,17 +41,14 @@ function PacthUsers() {
 
   return (
     <>
-      <div className="response">
+      <form className="response">
         <Input
-          label="Column"
+          label="Profession"
           type="text"
-          handleValue={(val) => setInputCol(val)}
+          list="profession"
+          handleValue={(val) => setInputP(val)}
         />
-        <Input
-          label="Old Value"
-          type="text"
-          handleValue={(val) => setInputOldV(val)}
-        />
+        <Menu items={ListData} nameInput="profession" val="profession" />
         <Input
           label="New Value"
           type="text"
@@ -52,15 +59,15 @@ function PacthUsers() {
         <button
           className="btn"
           onClick={(e) => {
-            e.preventDefault();
             SubmitPatch();
+            e.preventDefault();
           }}
         >
-          <b>Pacth</b>
+          <b>Patch</b>
         </button>
-      </div>
+      </form>
     </>
   );
 }
 
-export default PacthUsers;
+export default PacthProfession;

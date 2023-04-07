@@ -52,7 +52,7 @@ function Login() {
 
   return (
     <>
-      <div className="response">
+      <form className="response">
         <Input
           label="Email"
           type="email"
@@ -66,13 +66,14 @@ function Login() {
         <p className="chatBox">{Login.message}</p>
         <button
           className="btn"
-          onClick={() => {
+          onClick={(e) => {
+            e.preventDefault();
             SubmitLogin();
           }}
         >
           <b>login</b>
         </button>
-      </div>
+      </form>
     </>
   );
 }

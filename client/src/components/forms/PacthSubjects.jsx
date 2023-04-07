@@ -6,8 +6,8 @@ import Menu from "../main/Menu";
 function PacthSubject() {
   const [Patch, setPatch] = useState("All fields must be filled");
   const [DataList, setDataList] = useState([]);
-  const [ValSub, SetValSub] = useState('');
-  const [newVal, SetNewVal] = useState('');
+  const [ValSub, SetValSub] = useState("");
+  const [newVal, SetNewVal] = useState("");
 
   async function getSubject() {
     let res = await fetch("/subject");
@@ -39,7 +39,7 @@ function PacthSubject() {
   }
   return (
     <>
-      <div className="response">
+      <form className="response">
         <Input
           label="Subject"
           list="subject"
@@ -55,13 +55,14 @@ function PacthSubject() {
         <p className="chatBox">{Patch.message}</p>
         <button
           className="btn"
-          onClick={() => {
+          onClick={(e) => {
             SubmitPatch();
+            e.preventDefault();
           }}
         >
           <b>Pacth</b>
         </button>
-      </div>
+      </form>
     </>
   );
 }

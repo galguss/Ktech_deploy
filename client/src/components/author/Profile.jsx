@@ -56,7 +56,7 @@ function Profile() {
         <Input label="" type="file" handleValue={(val) => setInputFile(val)} />
       </div>
 
-      <div className="response">
+      <form className="response">
         <h3 className="title">עריכת פרופיל</h3>
         <Input
           label="סיסמה חדשה"
@@ -78,10 +78,16 @@ function Profile() {
         >
           {Message}
         </p>
-        <button className="btn" onClick={() => submitPass()}>
+        <button
+          className="btn"
+          onClick={(e) => {
+            submitPass();
+            e.preventDefault();
+          }}
+        >
           <b>שלח</b>
         </button>
-      </div>
+      </form>
     </div>
   );
 }

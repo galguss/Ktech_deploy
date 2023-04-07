@@ -39,7 +39,7 @@ function DeleteUsers() {
 
   return (
     <>
-      <div className="response">
+      <form className="response">
         <Input
           label="User"
           type="email"
@@ -49,10 +49,16 @@ function DeleteUsers() {
         <Menu items={ListData} nameInput="userEmail" val="email" />
 
         <p className="chatBox">{Delete.message}</p>
-        <button className="btn" onClick={() => SubmitDelete()}>
+        <button
+          className="btn"
+          onClick={(e) => {
+            SubmitDelete();
+            e.preventDefault();
+          }}
+        >
           <b>Delete</b>
         </button>
-      </div>
+      </form>
     </>
   );
 }

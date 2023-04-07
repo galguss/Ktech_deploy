@@ -34,7 +34,7 @@ function CreateUser() {
 
   return (
     <>
-      <div className="response">
+      <form className="response">
         <Input
           label="Email"
           type="email"
@@ -61,10 +61,16 @@ function CreateUser() {
           handleValue={(val) => setInputL(val)}
         />
         <p className="chatBox">{Create.message}</p>
-        <button className="btn" onClick={() => SubmitCeate()}>
+        <button
+          className="btn"
+          onClick={(e) => {
+            SubmitCeate();
+            e.preventDefault();
+          }}
+        >
           <b>Create</b>
         </button>
-      </div>
+      </form>
     </>
   );
 }

@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 
 import Nav from "../main/Nav";
 import Content from "../main/Content";
-import Login from "../response/login";
+import Login from "../forms/login";
 
 function Home() {
   return (

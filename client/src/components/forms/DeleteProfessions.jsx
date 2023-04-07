@@ -39,7 +39,7 @@ function DeleteProfession() {
 
   return (
     <>
-      <div className="response">
+      <form className="response">
         <Input
           label="Profession"
           list="profession"
@@ -48,10 +48,16 @@ function DeleteProfession() {
         />
         <Menu items={ListData} nameInput="profession" val="profession" />
         <p className="chatBox">{Delete.message}</p>
-        <button className="btn" onClick={() => SubmitDelete()}>
+        <button
+          className="btn"
+          onClick={(e) => {
+            SubmitDelete();
+            e.preventDefault();
+          }}
+        >
           <b>Delete</b>
         </button>
-      </div>
+      </form>
     </>
   );
 }
