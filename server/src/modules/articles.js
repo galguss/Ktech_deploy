@@ -53,6 +53,24 @@ exports.updateArticle = async (id, column, newValue) => {
     return db.execute(sql);
 }
 
+exports.updateSolutionArticle = async (id, page, user_id) => {
+    let sql = `UPDATE articles SET there_is_a_solution = 'true' WHERE article_id = '${id}';`;
+    await db.execute(sql);
+
+    let sqlUser = `UPDATE articles SET the_solver = '${user_id}' WHERE article_id = '${id}';`;
+    await db.execute(sqlUser);
+
+    const sql_page = `INSERT INTO pages (page) VALUE ('${page}')`;
+    await db.execute(sql_page);
+
+    let sql_pageId = `SELECT page_id FROM pages WHERE page = '${page}';`;
+    let [pageId, _] = await db.execute(sql_pageId);
+    pageId = pageId[0].page_id;
+
+    let sqlFileSolve = `UPDATE articles SET file_to_solve = '${pageId}' WHERE article_id = '${id}';`;
+    return db.execute(sqlFileSolve);
+}
+
 exports.deleteArticle = (id) => {
     let sql = `DELETE FROM articles WHERE article_id = '${id}';`;
     return db.execute(sql);

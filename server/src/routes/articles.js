@@ -61,7 +61,8 @@ router.post('/', checkAdmin, upload.single('page'), async (req, res) => {
             }
         }
 
-        await article.createArticle(page, subjectId, professionId, season_and_Question_numner, level);
+        const pathFile = `/uploads/${page}`;
+        await article.createArticle(pathFile, subjectId, professionId, season_and_Question_numner, level);
 
         res.status(200).json({
             message: "article created!"
@@ -75,9 +76,14 @@ router.post('/', checkAdmin, upload.single('page'), async (req, res) => {
     }
 });
 
-router.patch('/', checkAuth, async (req, res) => {
+router.patch('/', checkAuth, upload.single('page'), async (req, res) => {
     try {
-        const { id, column, newValue } = req.body;
+        const { filename: page } = req.file;
+        const { id, column, newValue, user_id } = req.body;
+        if(typeof page !== 'undefined'){
+            const pathFile = `/uploads/${page}`;
+            await updateSolutionArticle(id, pathFile, user_id);
+        }
         await article.updateArticle(id, column, newValue);
 
         res.status(200).json({

@@ -35,13 +35,21 @@ router.post('/', checkAdmin, async (req,res) => {
 
 router.patch('/', checkAuth, upload.single('image'), async (req, res) => {
     try {
-        const { column, oldValue, newValue, user_id, levelU } = req.body;
+        const {favorite, hobbies, column, oldValue, newValue, user_id, levelU } = req.body;
         if(levelU !== "a" || levelU !== "A"){
             const {filename: image} = req.file;
             let pathImage = "";
             if(typeof image !== 'undefined'){
                 pathImage = `/uploads/${image}`;
                 await User.saveImage(pathImage, user_id);
+            }
+
+            if(typeof favorite !== 'undefined'){
+                await User.updateFavLangUser(user_id, favorite);
+            }
+
+            if(typeof hobbies !== 'undefined'){
+                await User.updateHobbiesUser(user_id, hobbies);
             }
 
             if(typeof newValue !== 'undefined'){

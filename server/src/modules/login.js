@@ -34,7 +34,9 @@ exports.userLogin = async (email, password) => {
                 user_id: user[0].user_id,
                 token: token,
                 level: user[0].level,
-                image: user[0].image
+                image: user[0].image,
+                favorite: user[0].favorite_languages,
+                hobbies: user[0].hobbies
             };
         };
 

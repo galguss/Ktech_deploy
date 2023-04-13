@@ -59,12 +59,25 @@
   font-size: 26px;
 }
 
+.TextBox{
+  border-radius: 10px;
+}
+
 .messageErr{
   color: red;
 }
 
 .messageSuccess{
   color: green;
+}
+
+.SQN{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 80%;
+  min-height: 720px;
 }
 /*.App-logo {
   height: 40vmin;

@@ -9,7 +9,9 @@ export const userLoginSlice = createSlice({
             isLogged: isLogged !== null ? isLogged : false,
             user_id: -1,
             level: '',
-            image: ''
+            image: '',
+            favorite: '',
+            hobbies: ''
         }
     },
     reducers:{

@@ -12,6 +12,8 @@ function Profile() {
   const [InputP2, setInputP2] = useState("");
   const [InputFile, setInputFile] = useState("");
   const [InputGH, setInputGH] = useState("");
+  const [Favorite, setFavorite]= useState('');
+  const [Hobbies, setHobbies]= useState('');
 
   async function submitPass() {
     try {
@@ -33,6 +35,13 @@ function Profile() {
 
       if (InputGH !== "") {
         formData.append("github", InputGH);
+      }
+
+      if(Favorite !== '' || Favorite !== stateGlobal.favorite){
+        formData.append("favorite", Favorite);
+      }
+      if(Hobbies !== '' || Hobbies !== stateGlobal.hobbies){
+        formData.append("hobbies", Hobbies);
       }
 
       const URL = "/admin";
@@ -73,6 +82,11 @@ function Profile() {
           type="text"
           handleValue={(val) => setInputGH(val)}
         />
+        <h3>תחומי תכנות אהובים ומועדים:</h3>
+        <textarea className="TextBox" rows="5" cols="40" onChange={(e) => setFavorite(e.target.value)}>{stateGlobal.favorite}</textarea>
+        <h3>תחביבים:</h3>
+        <textarea className="TextBox" rows="5" cols="40"onChange={(e) => setHobbies(e.target.value)}>{stateGlobal.hobbies}</textarea>
+
         <p
           className={isEquals ? "chatBox messageSuccess" : "chatBox messageErr"}
         >
