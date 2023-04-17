@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { userLogin } from "../../redux/reducers/userReducers";
 
 import Input from "../main/Input";
 
 function Login() {
+  const stateGlobal = useSelector((state) => state.Login.value);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [Login, setLogin] = useState("All fields must be filled");
@@ -39,12 +40,14 @@ function Login() {
       const user = {
         isLogged: typeof data.token !== "undefined" && data.token !== "",
         user_id: data.user_id,
+        email: data.email,
         level: data.level,
         image: data.image,
+        favorite:data.favorite,
+        hobbies: data.hobbies
       };
 
       dispatch(userLogin(user));
-      localStorage.setItem("isLogged", user.isLogged);
     } catch (error) {
       setLogin("Incorrect email or password");
     }

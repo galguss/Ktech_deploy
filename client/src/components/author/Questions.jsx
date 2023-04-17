@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
 import { userLogin } from "../../redux/reducers/userReducers";
 import { Link, useNavigate } from "react-router-dom";
+
+
 
 function Questions({items = []}) {
   const Dispatch = useDispatch();
@@ -25,11 +27,11 @@ function Questions({items = []}) {
       <ul id="test">
         <li className="top">שאלות לבדיקה</li>
         {items.map(
-          (item) =>
+          (item, index) =>
             item.there_is_a_solution === "true" &&
             item.inspection_confirmaction === "false" && (
               <li className="item" key={"test"+item.article_id}>
-                <Link to={item.season_and_Question_numner}>
+                <Link to={"/author/SQN"+ index}>
                   {item.season_and_Question_numner}
                 </Link>
               </li>
@@ -48,6 +50,7 @@ function Questions({items = []}) {
             userLogin({
               isLogged: false,
               user_id: -1,
+              email: "",
               level: "",
               image: "",
               favorite: "",

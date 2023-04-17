@@ -1,8 +1,9 @@
 import { Outlet, Navigate } from "react-router-dom";
+import { useSelector } from 'react-redux'
 
 function PrivateComponents() {
-  const isLogged = localStorage.getItem("isLogged");
-  return isLogged ? <Outlet /> : <Navigate to="login" />;
+  const GlobalState = useSelector((state) => state.Login.value );
+  return GlobalState.isLogged ? <Outlet /> : <Navigate to="login" />;
 }
 
 export default PrivateComponents;

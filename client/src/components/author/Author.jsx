@@ -4,6 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import Profile from "./Profile";
 import Questions from "./Questions";
 import Solution from "./Solution";
+import Tests from "./Tests";
 
 function Author() {
   const [Articles, setArticles] = useState([]);
@@ -26,7 +27,13 @@ function Author() {
           <Route
             key={"/SQN" + index}
             path={"/SQN" + index}
-            element={<Solution item={item} />}
+            element={
+              item.there_is_a_solution === "false" ? (
+                <Solution item={item} />
+              ) : (
+                <Tests item={item} />
+              )
+            }
           />
         ))}
       </Routes>

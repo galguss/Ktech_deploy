@@ -32,6 +32,7 @@ exports.userLogin = async (email, password) => {
             return { 
                 message: "Auth successful",
                 user_id: user[0].user_id,
+                email: user[0].email,
                 token: token,
                 level: user[0].level,
                 image: user[0].image,

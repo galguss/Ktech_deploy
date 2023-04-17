@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import Input from "../main/Input";
 
 function Solution({ item }) {
   const GlobalState = useSelector((state) => state.Login.value);
+  const navigate = useNavigate();
   const [solution, setSolution] = useState("");
 
   async function uploadSolution() {
@@ -15,7 +17,7 @@ function Solution({ item }) {
       formData.append("user_id", GlobalState.user_id);
     }
 
-    await fetch("/articles", {
+    await fetch("/articles/solution", {
       method: "PATCH",
       body: formData,
     });
@@ -23,7 +25,8 @@ function Solution({ item }) {
 
   return (
     <div className="SQN">
-      <img src={item.page_id} />
+      <img src={item.page_id} className="image"/>
+      <p className="message"># שם הקובץ חייב להיות באנגלית</p>
       <form className="response">
         <Input
           label="העלאת פיתרון"
@@ -37,6 +40,7 @@ function Solution({ item }) {
           onClick={(e) => {
             e.preventDefault();
             uploadSolution();
+            navigate('/author');
           }}
         >
           העלה תשובתך

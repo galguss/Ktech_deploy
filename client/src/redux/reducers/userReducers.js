@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-const isLogged = localStorage.getItem('isLoggges');
+const isLogged = localStorage.getItem('isLoggged');
 
 export const userLoginSlice = createSlice({
     name: "userLogin",
@@ -8,6 +8,7 @@ export const userLoginSlice = createSlice({
         value: {
             isLogged: isLogged !== null ? isLogged : false,
             user_id: -1,
+            email: '',
             level: '',
             image: '',
             favorite: '',

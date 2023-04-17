@@ -76,16 +76,11 @@ router.post('/', checkAdmin, upload.single('page'), async (req, res) => {
     }
 });
 
-router.patch('/', checkAuth, upload.single('page'), async (req, res) => {
+router.patch('/', checkAuth, async (req, res) => {
     try {
-        const { filename: page } = req.file;
-        const { id, column, newValue, user_id } = req.body;
-        if(typeof page !== 'undefined'){
-            const pathFile = `/uploads/${page}`;
-            await updateSolutionArticle(id, pathFile, user_id);
-        }
-        await article.updateArticle(id, column, newValue);
-
+        const { id, column, newValue } = req.body;
+            await article.updateArticle(id, column, newValue);
+        
         res.status(200).json({
             message: "article updated!"
         });
@@ -97,6 +92,31 @@ router.patch('/', checkAuth, upload.single('page'), async (req, res) => {
         });
     }
 });
+
+router.patch('/:type', checkAuth, upload.single('page'), async (req, res) => {
+    try {
+        const type = req.params.type;
+        const { id, user_id, userLevel } = req.body;
+        
+         if(type === 'solution'){
+            const { filename: page } = req.file;
+            const pathFile = `/uploads/${page}`;
+            console.log('solution');
+            await article.updateSolutionArticle(id, pathFile, user_id);
+        }else if(type === 'test'){
+            if(userLevel !== 'A'){
+                await article.updateTestArticle(id);
+                await article.updateTesterArticle(id, user_id);
+            }else{
+                await article.updatePublicationArticle(id);
+            }
+        }
+           
+    } catch (error) {
+        console.log(error);
+    }
+
+})
 
 router.delete('/', checkAdmin, async (req, res) => {
     try {

@@ -1,9 +1,26 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import DataTable from "react-data-table-component";
 import "../../styles/routesStyle/getUsers.css";
 
 function GetArticles() {
-  const [Articles, setArticles] = useState([{}]);
+  const [ShowArticale, setShowArticles] = useState(false);
+  const [Articles, setArticles] = useState([]);
+  const [CountArticle, setCountArticle] = useState(0);
+  const GlobalState = useSelector((state) => state.Login.value);
+
+  async function handlePublication(id) {
+    await fetch("/articles/test", {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id: id,
+        userLevel: GlobalState.level,
+      }),
+    });
+  }
 
   const colums = [
     {
@@ -56,6 +73,10 @@ function GetArticles() {
     },
   ];
 
+  useEffect(() => {
+    fetchArticlesData();
+  }, [CountArticle]);
+
   async function fetchArticlesData() {
     const URL = "/articles";
     const response = await fetch(URL);
@@ -66,10 +87,47 @@ function GetArticles() {
 
   return (
     <div id="userTable">
-      <DataTable title="Articles" columns={colums} data={Articles} />
-      <button onClick={fetchArticlesData}>
+      <DataTable
+        title="Articles"
+        columns={colums}
+        data={ShowArticale && Articles}
+      />
+      <button
+        onClick={() => {
+          setShowArticles(true);
+        }}
+      >
         <b>Get Articles</b>
       </button>
+
+      <ul className="articlesPublic">
+        <h3 className="title">שאלות שמחכות לפרסום</h3>
+        {Articles.map(
+          (item, index) =>
+            item.inspection_confirmaction === "true" &&
+            item.Approval_for_publication === "false" && (
+              <li key={"Q" + index} className={"itemPublicArticle"}>
+                <b>{item.season_and_Question_numner}</b>
+                <a
+                  className="downloadLink"
+                  href={"http://localhost:3050" + item.file_to_solve}
+                  download={item.season_and_Question_numner}
+                  target="_blank"
+                >
+                  הורד פתרון
+                </a>
+                <button
+                  onClick={() => {
+                    handlePublication(item.article_id);
+                    setCountArticle(CountArticle + 1);
+                  }}
+                >
+                  אישור
+                </button>
+              </li>
+            )
+        )}
+      </ul>
     </div>
   );
 }

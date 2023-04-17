@@ -79,6 +79,7 @@ function CreateArticles() {
         handleValue={(val) => setValLevel(val)}
       />
       <Input label="File" type="file" handleValue={(val) => setValFile(val)} />
+      <p className="message"># שם הקובץ חייב להיות באנגלית</p>
       <p className="chatBox">{Create.message}</p>
       <button
         className="btn"

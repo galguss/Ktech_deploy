@@ -71,6 +71,23 @@ exports.updateSolutionArticle = async (id, page, user_id) => {
     return db.execute(sqlFileSolve);
 }
 
+exports.updateTestArticle = (id) => {
+    let sql = `UPDATE articles SET inspection_confirmaction = 'true' WHERE article_id = '${id}';`;
+    return db.execute(sql);
+    
+}
+
+exports.updateTesterArticle = (id, user_id) => {
+    let sqlUser = `UPDATE articles SET the_tester = '${user_id}' WHERE article_id = '${id}';`;
+    return db.execute(sqlUser);
+}
+
+exports.updatePublicationArticle = (id) => {
+    let sql = `UPDATE articles SET Approval_for_publication = 'true' WHERE article_id = '${id}';`;
+    return db.execute(sql);
+    
+}
+
 exports.deleteArticle = (id) => {
     let sql = `DELETE FROM articles WHERE article_id = '${id}';`;
     return db.execute(sql);
