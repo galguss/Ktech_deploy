@@ -1,5 +1,7 @@
-const util = require('util');
-const bcrypt = require('bcrypt');
+//const util = require('util');
+//const bcrypt = require('bcrypt');
+
+const md5 = require('md5');
 const express = require('express');
 const router = express.Router();
 
@@ -8,7 +10,7 @@ const checkAdmin = require('../middlewares/checkAdmin');
 const checkAuth = require('../middlewares/checkAuth');
 const upload = require('../middlewares/upload');
 
-const bcryptHash = util.promisify(bcrypt.hash);
+//const bcryptHash = util.promisify(bcrypt.hash);
 
 
 router.get('/', async (req, res) => {
@@ -25,7 +27,7 @@ router.post('/', checkAdmin, async (req,res) => {
     try {
         const { email, password, github, fullName, level } = req.body;
 
-        const newPassword = await bcryptHash(password, 10);
+        const newPassword = md5("GK" + password);
         await User.createUser(email, newPassword, github, fullName, level);
         res.status(201).json({ message: "User Created"});
     } catch (error) {
@@ -54,7 +56,7 @@ router.patch('/', checkAuth, upload.single('image'), async (req, res) => {
             }
 
             if(typeof newValue !== 'undefined'){
-                const newPassword = await bcryptHash(newValue, 10);
+                const newPassword = md5('GK' + newValue);
                 await User.updatePasUser(user_id, newPassword);
             }
 
@@ -63,7 +65,7 @@ router.patch('/', checkAuth, upload.single('image'), async (req, res) => {
             });
         }else{
             if(column === "password"){
-                const newPassword = await bcryptHash(newValue, 10);
+                const newPassword = md5('GK' + newValue);
                 await User.updateUser(column, oldValue, newPassword);
             }
             await User.updateUser(column, oldValue, newValue);
