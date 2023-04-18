@@ -12,7 +12,7 @@ const subjects = require('../modules/subjects');
 const professions = require('../modules/professions');
 const pages = require('../modules/pages');
 
-router.get('/', checkAuth, async (req, res) => {
+router.get('/', async (req, res) => {
     try {
        let user = await users.getUserName();
        let subject = await subjects.getAllSubject();

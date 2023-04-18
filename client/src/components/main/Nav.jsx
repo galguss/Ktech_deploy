@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import "../../styles/navbar.css";
 
+
 function Nav() {
   const GlobalState = useSelector((state) => state.Login.value);
   return (
@@ -10,7 +11,7 @@ function Nav() {
       <Link className="linkN" to="/">
         עמוד הבית
       </Link>
-      <Link className="linkN" to="/">
+      <Link className="linkN" to="/users">
         נבחרת הפותרים
       </Link>
       <Link
@@ -25,7 +26,7 @@ function Nav() {
       >
         כניסה למורשים
       </Link>
-      <Link className="linkN" to="/">
+      <Link className="linkN" to="/questions">
         שאלות ופתרונות
       </Link>
     </nav>

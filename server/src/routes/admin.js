@@ -11,7 +11,7 @@ const upload = require('../middlewares/upload');
 const bcryptHash = util.promisify(bcrypt.hash);
 
 
-router.get('/', checkAuth,async (req, res) => {
+router.get('/', async (req, res) => {
     try {
         let [users, _] = await User.getAllUsers();
         res.status(200).json(users);
