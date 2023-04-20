@@ -47,16 +47,61 @@
 }
 
 .container{
-  min-height: 520px;
+  min-height: 100vh;
   width: 80%;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
+.userContainer{
+  min-height: 100vh;
+  width: 100%;
+}
+
+.user{
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  min-height: 300px;
+  margin-top: 10px;
+}
+
+.UserName{
+  position: absolute;
+  font-size: 26px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: white;
+  top: 2px;
+  text-decoration: none;
+}
+
+.textbox{
+  text-align: right;
+  width: 60%;
+  min-height: 180px;
+}
+
+.marginTop{
+  margin-top: 10px;
+}
+
 .title{
   text-decoration: underline;
   font-size: 26px;
+}
+
+.TextBox{
+  border-radius: 10px;
+}
+
+.message{
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  text-align: right;
+  color: white;
+  margin-right: 10px;
 }
 
 .messageErr{
@@ -66,6 +111,43 @@
 .messageSuccess{
   color: green;
 }
+
+.SQN{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 80%;
+  min-height: 720px;
+}
+
+.containerPFD{
+  border: black solid 2px;
+  width: 90%;
+  height: 650px;
+}
+
+.downloadLink{
+  text-decoration: none;
+}
+
+.downLinkStyle{
+  font-size: 28px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #4375a2;
+  text-shadow: 1px 1px;
+  width: 40%;
+  text-align: right;
+}
+
+.downLinkStyle:hover{
+  color: white;
+}
+
+.image{
+  max-width: 90%;
+}
+
 /*.App-logo {
   height: 40vmin;
   pointer-events: none;

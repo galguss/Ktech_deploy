@@ -13,9 +13,10 @@ exports.getAllPage = async () => {
     return pages;
 }
 
-exports.getPage = (page) => {
-    let sql = `SELECT * FROM pages WHERE = '${page}'`;
-    return db.execute(sql);
+exports.getPage =async (page_id) => {
+    let sql = `SELECT * FROM pages WHERE page_id = '${page_id}'`;
+    let [file, _] = await db.execute(sql);
+    return file.page;
 }
 
 exports.createPage = (page) => {

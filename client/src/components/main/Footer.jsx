@@ -6,7 +6,7 @@ function Footer() {
     <footer>
       <p>
         בנייה:{" "}
-        <a href="https://github.com/galguss" target="_blank">
+        <a href="https://github.com/galguss" target="_blank" rel="noopener">
           גל גוסקובסקי
         </a>
       </p>
@@ -14,6 +14,7 @@ function Footer() {
         עיצוב:{" "}
         <a
           href="https://inbald6.wixsite.com/inbal-d-portfolio/%D7%A2%D7%99%D7%A6%D7%95%D7%91-%D7%92%D7%A8%D7%A4%D7%99"
+          rel="noopener"
           target="_blank"
         >
           ענבל דגן

@@ -4,7 +4,7 @@ import App from './App';
 import { Provider } from 'react-redux';
 import store from './redux/store';
 //import rootReducer from './redux/reducers/reducers';
-import { MemoryRouter, BrowserRouter } from 'react-router-dom';
+import { MemoryRouter } from 'react-router-dom';
 import './index.css';
 
 //let store = createStore(rootReducer, {user: {}});
@@ -12,11 +12,11 @@ import './index.css';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.Fragment>
-    <BrowserRouter>
+    <MemoryRouter>
     <Provider store = {store}>
       <App />
     </Provider>
-    </BrowserRouter>
+    </MemoryRouter>
   </React.Fragment>
 );
 

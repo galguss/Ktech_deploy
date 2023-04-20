@@ -12,7 +12,7 @@ const subjects = require('../modules/subjects');
 const professions = require('../modules/professions');
 const pages = require('../modules/pages');
 
-router.get('/', checkAuth, async (req, res) => {
+router.get('/', async (req, res) => {
     try {
        let user = await users.getUserName();
        let subject = await subjects.getAllSubject();
@@ -61,7 +61,8 @@ router.post('/', checkAdmin, upload.single('page'), async (req, res) => {
             }
         }
 
-        await article.createArticle(page, subjectId, professionId, season_and_Question_numner, level);
+        const pathFile = `/uploads/${page}`;
+        await article.createArticle(pathFile, subjectId, professionId, season_and_Question_numner, level);
 
         res.status(200).json({
             message: "article created!"
@@ -78,8 +79,8 @@ router.post('/', checkAdmin, upload.single('page'), async (req, res) => {
 router.patch('/', checkAuth, async (req, res) => {
     try {
         const { id, column, newValue } = req.body;
-        await article.updateArticle(id, column, newValue);
-
+            await article.updateArticle(id, column, newValue);
+        
         res.status(200).json({
             message: "article updated!"
         });
@@ -91,6 +92,31 @@ router.patch('/', checkAuth, async (req, res) => {
         });
     }
 });
+
+router.patch('/:type', checkAuth, upload.single('page'), async (req, res) => {
+    try {
+        const type = req.params.type;
+        const { id, user_id, userLevel } = req.body;
+        
+         if(type === 'solution'){
+            const { filename: page } = req.file;
+            const pathFile = `/uploads/${page}`;
+            console.log('solution');
+            await article.updateSolutionArticle(id, pathFile, user_id);
+        }else if(type === 'test'){
+            if(userLevel !== 'A'){
+                await article.updateTestArticle(id);
+                await article.updateTesterArticle(id, user_id);
+            }else{
+                await article.updatePublicationArticle(id);
+            }
+        }
+           
+    } catch (error) {
+        console.log(error);
+    }
+
+})
 
 router.delete('/', checkAdmin, async (req, res) => {
     try {

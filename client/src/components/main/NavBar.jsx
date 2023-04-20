@@ -1,8 +1,13 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { userLogin } from "../../redux/reducers/userReducers";
+import { Link, useNavigate } from "react-router-dom";
 import "../../styles/navbar.css";
 
 function NavBar() {
+  const Dispatch = useDispatch();
+  const navigate = useNavigate();
+
   return (
     <nav>
       <ul>
@@ -106,9 +111,34 @@ function NavBar() {
         </li>
       </ul>
 
+      <div className="containerBTN">
       <Link className="BTN" to="/">
         גישה לאתר
       </Link>
+      <Link className="BTN" to="/author">
+        עריכת פרופיל
+      </Link>
+
+      <button
+        className="BTN"
+        onClick={() => {
+          localStorage.setItem("isLogged", false);
+          Dispatch(
+            userLogin({
+              isLogged: false,
+              user_id: -1,
+              level: "",
+              image: "",
+              favorite: "",
+              hobbies: "",
+            })
+          );
+          navigate("/");
+        }}
+      >
+        התנתק
+      </button>
+      </div>
     </nav>
   );
 }

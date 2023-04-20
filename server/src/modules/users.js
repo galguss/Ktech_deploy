@@ -34,6 +34,16 @@ exports.saveImage = (image, id) => {
     return db.execute(sql_page);
 }
 
+exports.updateFavLangUser = (userID ,newValue) => {
+    let sql = `UPDATE users SET favorite_languages = '${newValue}' WHERE user_id = '${userID}';`;
+    return db.execute(sql);
+}
+
+exports.updateHobbiesUser = (userID ,newValue) => {
+    let sql = `UPDATE users SET hobbies = '${newValue}' WHERE user_id = '${userID}';`;
+    return db.execute(sql);
+}
+
 exports.deleteUser = (id) => {
     let sql = `DELETE FROM users WHERE user_id = ${id};`;
     return db.execute(sql);

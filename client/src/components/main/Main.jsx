@@ -16,7 +16,7 @@ function Main() {
         <Route path="*" element={<Home />} />
         <Route element={<PrivateComponents />}>
           <Route element={stateGlobal.level === 'A' && <Admin />} path="/admin/*" exact />
-          <Route element={<Author />} path="/author" exact/>
+          <Route element={<Author />} path="/author/*" exact/>
         </Route>
       </Routes>
     </div>

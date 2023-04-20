@@ -70,5 +70,12 @@ nav .BTN{
     border: white solid 3px;
     border-radius: 30px;
     color: white;
-    margin-top: 20px;
+}
+
+.containerBTN{
+    display: flex;
+    height: 250px;
+    margin-top: 100px;
+    align-items: center;
+    flex-direction: column;
 }

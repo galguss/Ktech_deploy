@@ -8,10 +8,13 @@ function Profile() {
 
   const [Message, setMessage] = useState("");
   const [isEquals, setIsEquals] = useState(false);
+  const [IsThereAFile, setIsThereAFile] = useState(false);
   const [InputP1, setInputP1] = useState("");
   const [InputP2, setInputP2] = useState("");
   const [InputFile, setInputFile] = useState("");
   const [InputGH, setInputGH] = useState("");
+  const [Favorite, setFavorite]= useState('');
+  const [Hobbies, setHobbies]= useState('');
 
   async function submitPass() {
     try {
@@ -29,11 +32,23 @@ function Profile() {
 
       if (typeof InputFile !== "undefined" && InputFile !== "") {
         formData.append("image", InputFile);
+        setIsThereAFile(true);
       }
 
       if (InputGH !== "") {
         formData.append("github", InputGH);
       }
+
+      if(Favorite !== '' || Favorite !== stateGlobal.favorite){
+        formData.append("favorite", Favorite);
+      }
+      if(Hobbies !== '' || Hobbies !== stateGlobal.hobbies){
+        formData.append("hobbies", Hobbies);
+      }
+
+      formData.append("user_id", stateGlobal.user_id);
+      formData.append("levelU", stateGlobal.level);
+      formData.append("IsThereAFile", IsThereAFile);
 
       const URL = "/admin";
       const response = await fetch(URL, {
@@ -53,6 +68,7 @@ function Profile() {
         <div className="imageP">
           <img className="profileImg" src={stateGlobal.image} />
         </div>
+        <p className="message"># שם הקובץ חייב להיות באנגלית</p>
         <Input label="" type="file" handleValue={(val) => setInputFile(val)} />
       </div>
 
@@ -73,6 +89,11 @@ function Profile() {
           type="text"
           handleValue={(val) => setInputGH(val)}
         />
+        <h3>תחומי תכנות אהובים ומועדים:</h3>
+        <textarea className="TextBox" rows="5" cols="40" onChange={(e) => setFavorite(e.target.value)}></textarea>
+        <h3>תחביבים:</h3>
+        <textarea className="TextBox" rows="5" cols="40"onChange={(e) => setHobbies(e.target.value)}></textarea>
+
         <p
           className={isEquals ? "chatBox messageSuccess" : "chatBox messageErr"}
         >

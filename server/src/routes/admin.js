@@ -11,7 +11,7 @@ const upload = require('../middlewares/upload');
 const bcryptHash = util.promisify(bcrypt.hash);
 
 
-router.get('/', checkAuth,async (req, res) => {
+router.get('/', async (req, res) => {
     try {
         let [users, _] = await User.getAllUsers();
         res.status(200).json(users);
@@ -35,13 +35,22 @@ router.post('/', checkAdmin, async (req,res) => {
 
 router.patch('/', checkAuth, upload.single('image'), async (req, res) => {
     try {
-        const { column, oldValue, newValue, user_id, levelU } = req.body;
+        const {favorite, hobbies, column, oldValue, newValue, user_id, levelU, IsThereAFile } = req.body;
+        
         if(levelU !== "a" || levelU !== "A"){
-            const {filename: image} = req.file;
-            let pathImage = "";
-            if(typeof image !== 'undefined'){
-                pathImage = `/uploads/${image}`;
-                await User.saveImage(pathImage, user_id);
+            if(IsThereAFile === 'true'){
+                const {filename: image} = req.file;
+
+                let pathImage = `/uploads/${image}`;
+                await User.saveImage(pathImage, user_id);  
+            }
+
+            if(typeof favorite !== 'undefined'){
+                await User.updateFavLangUser(user_id, favorite);
+            }
+
+            if(typeof hobbies !== 'undefined'){
+                await User.updateHobbiesUser(user_id, hobbies);
             }
 
             if(typeof newValue !== 'undefined'){
@@ -58,7 +67,7 @@ router.patch('/', checkAuth, upload.single('image'), async (req, res) => {
                 await User.updateUser(column, oldValue, newPassword);
             }
             await User.updateUser(column, oldValue, newValue);
-            res.status(201).json({ message: 'user updated'});
+            res.status(200).json({ message: 'user updated'});
         }
         
     } catch (error) {
