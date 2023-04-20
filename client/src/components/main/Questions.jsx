@@ -31,6 +31,7 @@ function Questions() {
                 <a
                   className="downloadLink downLinkStyle"
                   href={"http://localhost:3050" + item.file_to_solve}
+                  rel="noopener"
                   target="_blank"
                   download={"solution-" + item.season_and_Question_numner}
                 >

@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 
 import Input from "../main/Input";
 
-function Solution({ item }) {
+function Solution({ item, handleCangeNav }) {
   const GlobalState = useSelector((state) => state.Login.value);
   const navigate = useNavigate();
   const [solution, setSolution] = useState("");
@@ -40,6 +40,7 @@ function Solution({ item }) {
           onClick={(e) => {
             e.preventDefault();
             uploadSolution();
+            handleCangeNav();
             navigate('/author');
           }}
         >

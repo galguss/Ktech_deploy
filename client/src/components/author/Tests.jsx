@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { Viewer, Worker } from "@react-pdf-viewer/core";
 import "@react-pdf-viewer/core/lib/styles/index.css";
 
-function Tests({ item }) {
+function Tests({ item, handleCangeNav }) {
   const GlobalState = useSelector((state) => state.Login.value);
   const navigate = useNavigate();
   async function handleTest() {
@@ -45,6 +45,7 @@ function Tests({ item }) {
             onClick={(e) => {
               e.preventDefault();
               handleTest();
+              handleCangeNav();
               navigate("/author");
             }}
           >

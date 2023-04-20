@@ -111,8 +111,12 @@ function NavBar() {
         </li>
       </ul>
 
+      <div className="containerBTN">
       <Link className="BTN" to="/">
         גישה לאתר
+      </Link>
+      <Link className="BTN" to="/author">
+        עריכת פרופיל
       </Link>
 
       <button
@@ -134,6 +138,7 @@ function NavBar() {
       >
         התנתק
       </button>
+      </div>
     </nav>
   );
 }

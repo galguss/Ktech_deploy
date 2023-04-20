@@ -136,7 +136,8 @@
   font-family: Arial, Helvetica, sans-serif;
   color: #4375a2;
   text-shadow: 1px 1px;
-  border-bottom: #4375a2 solid 2px;
+  width: 40%;
+  text-align: right;
 }
 
 .downLinkStyle:hover{

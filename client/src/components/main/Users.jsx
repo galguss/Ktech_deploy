@@ -17,23 +17,23 @@ function Users() {
       {ShowUsers.map((item, index) => (
         <div className="user" key={"user" + index}>
           <a
-            href={"https://"+item.github}
+            href={"https://" + item.github}
             className="UserName"
             target="_blank"
           >
             {item.full_name}
           </a>
-          <img
-            src={item.image !== null ? item.image : Image}
-            width="250"
-          />
+          <img src={item.image !== null ? item.image : Image} width="250" />
           <p className="textbox">
             <spen>
-              <h3>תחומי תכנות אהובים ומועדים:</h3>
+              <span className="title">תחומי תכנות אהובים ומועדים:</span>
+              <br />
               {item.favorite_languages}
             </spen>
+            <br />
             <spen>
-              <h3 className="marginTop">תחביבים:</h3>
+              <span className="title marginTop">תחביבים:</span>
+              <br />
               {item.hobbies}
             </spen>
           </p>
