@@ -22,17 +22,18 @@ function Questions() {
               <li key={item.article_id} className="itemPublicArticle marginTop">
                 <a
                   className="downloadLink downLinkStyle"
-                  href={"http://localhost:3050" + item.page_id}
+                  href={item.page_id}
                   target="_blank"
+                  rel="noopener"
                   download={item.season_and_Question_numner}
                 >
                   {item.season_and_Question_numner}
                 </a>
                 <a
                   className="downloadLink downLinkStyle"
-                  href={"http://localhost:3050" + item.file_to_solve}
-                  rel="noopener"
+                  href={item.file_to_solve}
                   target="_blank"
+                  rel="noopener"
                   download={"solution-" + item.season_and_Question_numner}
                 >
                   פתרון

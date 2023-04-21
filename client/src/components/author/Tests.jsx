@@ -34,9 +34,10 @@ function Tests({ item, handleCangeNav }) {
         <form className="response">
           <a
             className="btn downloadLink"
-            href={'http://localhost:3050' + item.file_to_solve}
+            href={item.file_to_solve}
             download={item.season_and_Question_numner}
             target="_blank"
+            rel="noopener"
           >
             הורדה
           </a>
