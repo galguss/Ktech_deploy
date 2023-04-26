@@ -22,6 +22,17 @@ router.get('/', async (req, res) => {
     }
 });
 
+router.get('/:id', async (req, res) => {
+    try {
+        const user = await User.getUserdata(req.params.id);
+        res.status(200).json(user)
+    } catch (error) {
+        res.status(401).json({
+            message: error
+        })
+    }
+});
+
 
 router.post('/', checkAdmin, async (req,res) => {
     try {
@@ -82,12 +93,7 @@ router.patch('/', checkAuth, upload.single('image'), async (req, res) => {
 router.delete('/', checkAdmin, async ( req, res ) => {
     try {
         const { userEmail } = req.body;
-        const userEmails = await User.getUserName();
-        
-        for(let k = 0; k < userEmails.length; k++)
-            if(userEmail === userEmails[k])
-                await User.deleteUser(k);
-
+         await User.deleteUser(userEmail);
         res.status(201).json({
             message: "user deleted"
         });

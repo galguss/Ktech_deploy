@@ -46,6 +46,7 @@ function Questions({items = []}) {
         className="BTN"
         onClick={() => {
           localStorage.setItem("isLogged", false);
+          localStorage.setItem("user_id", -1);
           Dispatch(
             userLogin({
               isLogged: false,

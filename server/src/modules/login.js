@@ -23,7 +23,7 @@ exports.userLogin = async (email, password) => {
         userId = user[0].user_id;
         image = user[0].image;
         levelUser = user[0].level;
-        const userIsLogin =(md5('GK'+ password) === user[0].password);
+        const userIsLogin =( md5('GK'+ password) === user[0].password);
         if(userIsLogin){
               token = jwt.sign({
                 id: user[0].user_id,

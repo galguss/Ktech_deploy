@@ -44,8 +44,8 @@ exports.updateHobbiesUser = (userID ,newValue) => {
     return db.execute(sql);
 }
 
-exports.deleteUser = (id) => {
-    let sql = `DELETE FROM users WHERE user_id = ${id};`;
+exports.deleteUser = (email) => {
+    let sql = `DELETE FROM users WHERE email = ${email};`;
     return db.execute(sql);
 }
 
@@ -64,6 +64,12 @@ exports.getUserName = async () => {
     };
 
     return userName;
+}
+
+exports.getUserdata = async (id) => {
+    let sql = `SELECT * FROM users WHERE user_id = '${id}';`;
+    let [userNames, _] = await db.execute(sql);
+    return userNames[0];
 }
 
 

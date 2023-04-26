@@ -43,9 +43,17 @@ function Login() {
         email: data.email,
         level: data.level,
         image: data.image,
-        favorite:data.favorite,
-        hobbies: data.hobbies
+        favorite: data.favorite,
+        hobbies: data.hobbies,
       };
+
+      localStorage.setItem("isLogged", user.isLogged);
+      localStorage.setItem(
+        "user_id",
+        Math.floor(Math.random() * 9 + 1) * 10 +
+          `${user.user_id}` +
+          Math.floor(Math.random() * 9 + 1) * 10
+      );
 
       dispatch(userLogin(user));
     } catch (error) {
