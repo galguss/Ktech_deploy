@@ -92,8 +92,8 @@ router.patch('/', checkAuth, upload.single('image'), async (req, res) => {
 
 router.delete('/', checkAdmin, async ( req, res ) => {
     try {
-        const { userEmail } = req.body;
-         await User.deleteUser(userEmail);
+        const { id } = req.body;
+         await User.deleteUser(id);
         res.status(201).json({
             message: "user deleted"
         });

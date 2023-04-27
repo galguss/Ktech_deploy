@@ -44,8 +44,8 @@ exports.updateHobbiesUser = (userID ,newValue) => {
     return db.execute(sql);
 }
 
-exports.deleteUser = (email) => {
-    let sql = `DELETE FROM users WHERE email = ${email};`;
+exports.deleteUser = (id) => {
+    let sql = `DELETE FROM users WHERE user_id = ${id};`;
     return db.execute(sql);
 }
 
@@ -55,12 +55,12 @@ exports.login =(email) => {
 }
 
 exports.getUserName = async () => {
-    let sql = `SELECT user_id, email FROM users;`;
+    let sql = `SELECT user_id, full_name FROM users;`;
     let [userNames, _] = await db.execute(sql);
     const userName = [];
 
     for(let user of userNames){
-        userName[user.user_id] = user.email;
+        userName[user.user_id] = user.full_name;
     };
 
     return userName;

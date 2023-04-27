@@ -47,7 +47,7 @@
 }
 
 .container{
-  min-height: 100vh;
+  min-height: 80vh;
   width: 80%;
   display: flex;
   align-items: center;

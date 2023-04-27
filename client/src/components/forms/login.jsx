@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { userLogin } from "../../redux/reducers/userReducers";
 
 import Input from "../main/Input";
 
 function Login() {
-  const stateGlobal = useSelector((state) => state.Login.value);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [Login, setLogin] = useState("All fields must be filled");

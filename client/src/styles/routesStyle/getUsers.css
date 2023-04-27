@@ -18,7 +18,11 @@
     
 }
 
-#userTable button{
+.right{
+    text-align: right;
+}
+
+.btnPub{
     width: 150px;
     height: 30px;
     border-radius: 6px;
@@ -43,3 +47,54 @@
     font-size: 20px;
     height: 50px;
 }
+
+table{
+    direction: rtl;
+    width: 98%;
+}
+
+th,td{
+    border: black solid 1px;
+}
+
+.btnTable{
+    width: 50px;
+    height: 40px;
+}
+
+.alertMargin{
+    margin: 10px;
+    border-radius: 10px;
+}
+
+.red{
+    background-color: red;
+    color: white;
+}
+
+.green{
+    background-color: green;
+    color: white;
+}
+
+.popup-message {
+    position: fixed;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    background-color: #ffffff;
+    color: #000000;
+    text-align: center;
+    padding: 20px;
+    font-size: 1.2em;
+    animation: descend 0.5s ease forwards;
+  }
+  
+  @keyframes descend {
+    0% {
+      top: -100%;
+    }
+    100% {
+      top: 0%;
+    }
+  }

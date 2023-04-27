@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import DataTable from "react-data-table-component";
+import { useNavigate } from "react-router-dom";
+//import DataTable from "react-data-table-component";
 import "../../styles/routesStyle/getUsers.css";
 
 function GetArticles() {
-  const [ShowArticale, setShowArticles] = useState(false);
   const [Articles, setArticles] = useState([]);
   const [CountArticle, setCountArticle] = useState(0);
+  const [Alert, setAlert] = useState(false);
+  const [IdForDelete, setIdForDelete] = useState(-1);
   const GlobalState = useSelector((state) => state.Login.value);
+
+  const navigate = useNavigate();
 
   async function handlePublication(id) {
     await fetch("/articles/test", {
@@ -22,7 +26,19 @@ function GetArticles() {
     });
   }
 
-  const colums = [
+  function handleDelete(id) {
+    fetch("/articles", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id: id,
+      }),
+    });
+  }
+
+  /*const colums = [
     {
       name: "article_id",
       selector: (row) => row.article_id,
@@ -71,7 +87,39 @@ function GetArticles() {
       name: "Date_of_writing_solution",
       selector: (row) => row.Date_of_writing_solution,
     },
-  ];
+  ];*/
+
+  //Maybe it can be deleted?
+
+  /* <ul className="articlesPublic">
+  <h3 className="title">שאלות שמחכות לפרסום</h3>
+  {Articles.map(
+    (item, index) =>
+      item.inspection_confirmaction === "true" &&
+      item.Approval_for_publication === "false" && (
+        <li key={"Q" + index} className={"itemPublicArticle"}>
+          <b>{item.season_and_Question_numner}</b>
+          <a
+            className="downloadLink"
+            href={item.file_to_solve}
+            download={item.season_and_Question_numner}
+            target="_blank"
+            rel="noopener"
+          >
+            הורד פתרון
+          </a>
+          <button className="btnPub"
+            onClick={() => {
+              handlePublication(item.article_id);
+              setCountArticle(CountArticle + 1);
+            }}
+          >
+            אישור
+          </button>
+        </li>
+      )
+  )}
+</ul>*/
 
   useEffect(() => {
     fetchArticlesData();
@@ -87,48 +135,127 @@ function GetArticles() {
 
   return (
     <div id="userTable">
-      <DataTable
-        title="Articles"
-        columns={colums}
-        data={ShowArticale && Articles}
-      />
-      <button
-        onClick={() => {
-          setShowArticles(true);
-        }}
-      >
-        <b>Get Articles</b>
-      </button>
-
-      <ul className="articlesPublic">
-        <h3 className="title">שאלות שמחכות לפרסום</h3>
-        {Articles.map(
-          (item, index) =>
-            item.inspection_confirmaction === "true" &&
-            item.Approval_for_publication === "false" && (
-              <li key={"Q" + index} className={"itemPublicArticle"}>
-                <b>{item.season_and_Question_numner}</b>
-                <a
-                  className="downloadLink"
-                  href={item.file_to_solve}
-                  download={item.season_and_Question_numner}
-                  target="_blank"
-                  rel="noopener"
+      {Alert && (
+        <div className="popup-message">
+          <h3>?אתה בטוח שאתה רוצה למחוק</h3>
+          <button
+            onClick={() => {
+              handleDelete(IdForDelete);
+              setCountArticle(CountArticle + 1);
+              setAlert(false);
+            }}
+            className="btnTable alertMargin green"
+          >
+            מחק
+          </button>
+          <button
+            onClick={() => setAlert(false)}
+            className="btnTable alertMargin red"
+          >
+            ביטול
+          </button>
+        </div>
+      )}
+      <table>
+        <thead>
+          <tr>
+            <td colSpan="1" colspan="100" className="right">
+              <button
+                className="btnTable"
+                onClick={() => navigate("/admin/CreateArticles")}
+              >
+                הוספה+
+              </button>
+            </td>
+          </tr>
+          <tr>
+            
+            <th colSpan="1">subject</th>
+            <th colSpan="1">profession</th>
+            <th colSpan="1">season and Question numner</th>
+            <th colSpan="1">level</th>
+            <th colSpan="1">the solver</th>
+            <th colSpan="1">there is a solution</th>
+            <th colSpan="1">the tester</th>
+            <th colSpan="1">inspection confirmaction</th>
+            <th colSpan="1">Approval for publication</th>
+            <th colSpan="1">Date of writing solution</th>
+            <th colSpan="1"></th>
+            <th colSpan="1"></th>
+          </tr>
+        </thead>
+        <tbody>
+          {Articles.map((item, index) => (
+            <tr key={item.article_id}>
+              <td>{item.subject_id}</td>
+              <td>{item.profession_id}</td>
+              <td>{item.season_and_Question_numner}</td>
+              <td>{item.level}</td>
+              <td>{item.the_solver}</td>
+              <td>
+                <button
+                  onClick={() => navigate("/author/SQN" + index)}
+                  className={
+                    item.there_is_a_solution === "true"
+                      ? "btnTable green"
+                      : "btnTable red"
+                  }
                 >
-                  הורד פתרון
-                </a>
+                  ליפתור
+                </button>
+              </td>
+              <td>{item.the_tester}</td>
+              <td>
+                <button
+                  onClick={() => navigate("/author/test" + index)}
+                  className={
+                    item.inspection_confirmaction === "true"
+                      ? "btnTable green"
+                      : "btnTable red"
+                  }
+                >
+                  ליבדוק
+                </button>
+              </td>
+              <td>
                 <button
                   onClick={() => {
                     handlePublication(item.article_id);
                     setCountArticle(CountArticle + 1);
                   }}
+                  className={
+                    item.Approval_for_publication === "true"
+                      ? "btnTable green"
+                      : "btnTable red"
+                  }
                 >
-                  אישור
+                  פרסם
                 </button>
-              </li>
-            )
-        )}
-      </ul>
+              </td>
+              <td>{item.Date_of_writing_solution}</td>
+              <td>
+                <button
+                  onClick={() => navigate("/admin/PatchArticles")}
+                  className="btnTable"
+                >
+                  עריכה
+                </button>
+              </td>
+              <td>
+                <button
+                  onClick={() => {
+                    setAlert(true);
+                    setIdForDelete(item.article_id);
+                  }}
+                  className="btnTable"
+                >
+                  מחיקה
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 }

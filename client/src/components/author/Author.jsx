@@ -18,7 +18,7 @@ function Author() {
   useEffect(() => {
     getArticles();
   }, [QuestionsCount]);
-  
+
   return (
     <div className="body-web">
       <Questions items={Articles} />
@@ -30,11 +30,22 @@ function Author() {
               key={"/SQN" + index}
               path={"/SQN" + index}
               element={
-                item.there_is_a_solution === "false" ? (
-                  <Solution item={item} handleCangeNav={() => setQuestionsCount(QuestionsCount + 1)} />
-                ) : (
-                  <Tests item={item}  handleCangeNav={() => setQuestionsCount(QuestionsCount + 1)}/>
-                )
+                <Solution
+                  item={item}
+                  handleCangeNav={() => setQuestionsCount(QuestionsCount + 1)}
+                />
+              }
+            />
+          ))}
+          {Articles.map((item, index) => (
+            <Route
+              key={"/test" + index}
+              path={"/test" + index}
+              element={
+                <Tests
+                  item={item}
+                  handleCangeNav={() => setQuestionsCount(QuestionsCount + 1)}
+                />
               }
             />
           ))}
