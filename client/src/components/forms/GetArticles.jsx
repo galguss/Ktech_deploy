@@ -14,7 +14,7 @@ function GetArticles() {
   const navigate = useNavigate();
 
   async function handlePublication(id) {
-    await fetch("/articles/test", {
+    await fetch("/articles/public", {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",

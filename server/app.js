@@ -6,17 +6,6 @@ const app = express();
 
 dotenv.config();
 
-// routes
-const admin = require('./src/routes/admin');
-const subjects = require('./src/routes/subject');
-const professions = require('./src/routes/profession');
-const articles = require('./src/routes/articles');
-const pages = require('./src/routes/pages');
-
-//modules and middlewares
-const Login = require('./src/modules/login');
-
-
 app.use((req, res, next)=> {
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorizeition");
@@ -24,15 +13,39 @@ app.use((req, res, next)=> {
     next();
 });
 
+app.use(express.json());
+app.use(morgan('dev'));
+
+// routes
+const admin = require('./src/routes/admin');
+app.use('/admin' ,admin);
+
+const subjects = require('./src/routes/subject');
+app.use('/subject', subjects);
+
+const professions = require('./src/routes/profession');
+app.use('/profession', professions);
+
+const articles = require('./src/routes/articles');
+app.use('/articles', articles);
+
+const pages = require('./src/routes/pages');
+app.use('/pages', pages);
+
+
+const homePage = require('./src/routes/homePage');
+app.use('/home', homePage);
+
+//modules and middlewares
+const Login = require('./src/modules/login');
+
+
 const port = process.env.PORT || 3050;
 
 app.listen(port, (req, res) => {
     console.log(`server is running...`)
 });
 
-
-app.use(express.json());
-app.use(morgan('dev'));
 
 // static folders
 const publicPath = path.join(__dirname, "./public");
@@ -55,12 +68,11 @@ app.post('/login', async (req, res) => {
     }
 });
 
-app.use('/admin' ,admin);
 
-app.use('/subject', subjects);
 
-app.use('/profession', professions);
 
-app.use('/articles', articles);
 
-app.use('/pages', pages);
+
+
+
+

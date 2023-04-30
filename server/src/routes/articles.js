@@ -96,21 +96,17 @@ router.patch('/', checkAuth, async (req, res) => {
 router.patch('/:type', checkAuth, upload.single('page'), async (req, res) => {
     try {
         const type = req.params.type;
-        const { id, user_id, userLevel } = req.body;
-        
+        const { id, user_id, userLevel, Links} = req.body;
          if(type === 'solution'){
             const { filename: page } = req.file;
             const pathFile = `/uploads/${page}`;
-            console.log('solution');
-            await article.updateSolutionArticle(id, pathFile, user_id);
+            await article.updateSolutionArticle(id, pathFile, user_id, Links);
         }else if(type === 'test'){
-            if(userLevel !== 'A'){
-                await article.updateTestArticle(id);
-                await article.updateTesterArticle(id, user_id);
-            }else{
-                await article.updatePublicationArticle(id);
-            }
-        }
+            await article.updateTestArticle(id);
+            await article.updateTesterArticle(id, user_id);
+        }else if(type === 'public')
+            if(userLevel === 'A')
+            await article.updatePublicationArticle(id);
            
     } catch (error) {
         console.log(error);

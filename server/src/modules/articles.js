@@ -53,7 +53,7 @@ exports.updateArticle = async (id, column, newValue) => {
     return db.execute(sql);
 }
 
-exports.updateSolutionArticle = async (id, page, user_id) => {
+exports.updateSolutionArticle = async (id, page, user_id, links) => {
     let sql = `UPDATE articles SET there_is_a_solution = 'true' WHERE article_id = '${id}';`;
     await db.execute(sql);
 
@@ -67,6 +67,10 @@ exports.updateSolutionArticle = async (id, page, user_id) => {
     let [pageId, _] = await db.execute(sql_pageId);
     pageId = pageId[0].page_id;
 
+    if(typeof links !== 'undefined'){
+        let linksDB = `UPDATE articles SET links = '${links}' WHERE article_id = '${id}';`;
+        await db.execute(linksDB);
+    }
     let sqlFileSolve = `UPDATE articles SET file_to_solve = '${pageId}' WHERE article_id = '${id}';`;
     return db.execute(sqlFileSolve);
 }

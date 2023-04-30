@@ -1,13 +1,31 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-
 import Input from "../main/Input";
+// ---------- Editor -----------
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
+const modules = {
+  toolbar: [
+    [{ 'font': [] }, { 'size': ['small', false, 'large', 'huge'] }], // custom options
+    ['bold', 'italic', 'underline', 'strike'], // default options
+    [{ 'header': 1 }, { 'header': 2 }], // custom options
+    [{ 'list': 'ordered' }, { 'list': 'bullet' }], // default options
+    [{ 'align': [] }], // custom options
+    ['link', 'image', 'video'], // default options
+    [{ 'color': [] }, { 'background': [] }], // custom options
+    ['clean'], // default options
+  ],
+  
+};
+
+
 
 function Solution({ item, handleCangeNav }) {
   const GlobalState = useSelector((state) => state.Login.value);
   const navigate = useNavigate();
   const [solution, setSolution] = useState("");
+  const [content, setContent] = useState("");
 
   async function uploadSolution() {
     const formData = new FormData();
@@ -15,6 +33,7 @@ function Solution({ item, handleCangeNav }) {
       formData.append("id", item.article_id);
       formData.append("page", solution);
       formData.append("user_id", GlobalState.user_id);
+      formData.append("Links", content);
     }
 
     await fetch("/articles/solution", {
@@ -25,7 +44,7 @@ function Solution({ item, handleCangeNav }) {
 
   return (
     <div className="SQN">
-      <img src={item.page_id} className="image"/>
+      <img src={item.page_id} className="image" />
       <p className="message"># שם הקובץ חייב להיות באנגלית</p>
       <form className="response">
         <Input
@@ -35,13 +54,22 @@ function Solution({ item, handleCangeNav }) {
             setSolution(val);
           }}
         />
+        <div className="editor">
+        <ReactQuill
+            theme="snow"
+            value={content}
+            onChange={setContent}
+            className="editor-input"
+            modules={modules}
+          />
+        </div>
         <button
           className="btn"
           onClick={(e) => {
             e.preventDefault();
             uploadSolution();
             handleCangeNav();
-            navigate('/author');
+            navigate(GlobalState.level !== "A" ? "/author" : "/admin");
           }}
         >
           העלה תשובתך
