@@ -73,11 +73,38 @@ function CreateArticles() {
         type="text"
         handleValue={(val) => setValSAQ(val)}
       />
-      <Input
-        label="Level"
-        type="text"
-        handleValue={(val) => setValLevel(val)}
-      />
+      <fieldset className="userLevel">
+          <legend>
+            <b>Question level</b>
+          </legend>
+          <label>
+            <input 
+              onChange={(e) => setValLevel(e.target.value)}
+              name=" level"
+              value="א"
+              type="radio"
+              />
+              חלק א
+          </label>
+          <label>
+            <input 
+              onChange={(e) => setValLevel(e.target.value)}
+              name=" level"
+              value="ב"
+              type="radio"
+              />
+              חלק ב
+          </label>
+          <label>
+            <input 
+              onChange={(e) => setValLevel(e.target.value)}
+              name=" level"
+              value="ג"
+              type="radio"
+              />
+              חלק ג
+          </label>
+        </fieldset>
       <Input label="File" type="file" handleValue={(val) => setValFile(val)} />
       <p className="message"># שם הקובץ חייב להיות באנגלית</p>
       <p className="chatBox">{Create.message}</p>

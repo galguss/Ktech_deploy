@@ -56,7 +56,7 @@
 }
 
 .userContainer{
-  min-height: 100vh;
+  min-height: 80vh;
   width: 100%;
 }
 
@@ -124,25 +124,23 @@
 
 .containerPFD{
   border: black solid 2px;
-  width: 90%;
-  height: 650px;
+  width: 100%;
+  height: 100%;
 }
 
-.downloadLink{
-  text-decoration: none;
+.Questions-show{
+  width: 80%;
+  min-height: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-.downLinkStyle{
-  font-size: 28px;
-  font-family: Arial, Helvetica, sans-serif;
-  color: #4375a2;
-  text-shadow: 1px 1px;
-  width: 40%;
-  text-align: right;
-}
-
-.downLinkStyle:hover{
-  color: white;
+.PDF_page{
+  background-color: white;
+  width: 49%;
+  height: 200px;
 }
 
 .image{
@@ -165,6 +163,43 @@
   width: 90%;
   font-size: 26px;
   padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.userLevel{
+  width: 80%;
+  height: 60px;
+  border: white solid 2px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.userLevel > legend{
+  font-size: 20px;
+}
+
+.btnShow{
+  width: 50%;
+  height: 100%;
+  border: none;
+  background: none;
+  color: white;
+  font-size: 24px;
+  text-align: right;
+  padding: 0 30px;
+}
+
+.btnShow > b:hover{
+  cursor: pointer;
+}
+
+.shows{
+  width: 100%;
+  height: 50px;
   display: flex;
   align-items: center;
   justify-content: space-around;
