@@ -27,6 +27,7 @@ router.get('/', async (req, res) => {
             key.the_solver = user[key.the_solver];
             key.file_to_solve = page[key.file_to_solve];
             key.the_tester = user[key.the_tester];
+            key.CS_File = page[key.CS_File];
        }
 
        res.status(200).json(articles);

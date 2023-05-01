@@ -54,25 +54,25 @@ exports.updateArticle = async (id, column, newValue) => {
 }
 
 exports.updateSolutionArticle = async (id, page, user_id, links) => {
-    let sql = `UPDATE articles SET there_is_a_solution = 'true' WHERE article_id = '${id}';`;
-    await db.execute(sql);
-
-    let sqlUser = `UPDATE articles SET the_solver = '${user_id}' WHERE article_id = '${id}';`;
-    await db.execute(sqlUser);
-
-    const sql_page = `INSERT INTO pages (page) VALUE ('${page}')`;
-    await db.execute(sql_page);
-
-    let sql_pageId = `SELECT page_id FROM pages WHERE page = '${page}';`;
-    let [pageId, _] = await db.execute(sql_pageId);
-    pageId = pageId[0].page_id;
-
-    if(typeof links !== 'undefined'){
-        let linksDB = `UPDATE articles SET links = '${links}' WHERE article_id = '${id}';`;
-        await db.execute(linksDB);
+    const isCSharpFile = /\.(cs)$/i.test(page.toString());
+    const [result, _] = await db.execute('INSERT INTO pages (page) VALUES (?)', [`${page}`]);
+    const sql_pageID = result.insertId;
+    
+    let sql;
+    if(isCSharpFile){
+       return db.execute(`UPDATE articles SET CS_File = '${sql_pageID}' WHERE article_id = '${id}';`);
+    }else{
+        sql = `UPDATE articles SET 
+        there_is_a_solution = 'true',
+        file_to_solve = '${sql_pageID}',
+        the_solver = '${user_id}'`
+        if(typeof links !== 'undefined'){
+            sql += `, links = '${links}'`
+        }
+       sql += `WHERE article_id = '${id}';`;
     }
-    let sqlFileSolve = `UPDATE articles SET file_to_solve = '${pageId}' WHERE article_id = '${id}';`;
-    return db.execute(sqlFileSolve);
+      
+    return db.execute(sql);
 }
 
 exports.updateTestArticle = (id) => {

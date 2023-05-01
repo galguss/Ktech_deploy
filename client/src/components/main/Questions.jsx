@@ -66,6 +66,18 @@ function Questions() {
                         />
                       </>
                     )}
+                    {typeof item.CS_File !== 'undefined' && TypeShow === 'pdf' && (
+                      <a
+                        className="btnPub text-decoration-none"
+                        href={item.CS_File}
+                        download={item.season_and_Question_numner}
+                        target="_blank"
+                        rel="noopener"
+                      >
+                        להורדת קוד
+                      </a>
+                    )}
+
                     <button
                       className="btnPub"
                       onClick={() => {
