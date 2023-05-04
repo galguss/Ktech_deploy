@@ -18,8 +18,8 @@ exports.getAllProfessionsObject = async () => {
 }
 
 exports.getProfession = (profession) => {
-    let sql = `SELECT * FROM professions WHERE = '${profession}'`;
-    return db.execute(sql);
+    let [sql, _] = `SELECT profession_id FROM professions WHERE = '${profession}'`;
+    return db.execute(sql[0]);
 }
 
 exports.createProfession = (profession) => {

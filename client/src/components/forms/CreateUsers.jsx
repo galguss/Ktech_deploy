@@ -31,7 +31,7 @@ function CreateUser() {
       setCeate("One or more of the fields are invalid");
     }
   }
-
+  
   return (
     <>
       <form className="response">
@@ -55,11 +55,29 @@ function CreateUser() {
           type="text"
           handleValue={(val) => setInputFN(val)}
         />
-        <Input
-          label="Level"
-          type="text"
-          handleValue={(val) => setInputL(val)}
-        />
+        <fieldset className="userLevel">
+          <legend>
+            <b>User level</b>
+          </legend>
+          <label>
+            <input 
+              onChange={(e) => setInputL(e.target.value)}
+              name=" level"
+              value="A"
+              type="radio"
+              />
+              :Manager
+          </label>
+          <label>
+            <input 
+              onChange={(e) => setInputL(e.target.value)}
+              name=" level"
+              value="B"
+              type="radio"
+              />
+              :Author
+          </label>
+        </fieldset>
         <p className="chatBox">{Create.message}</p>
         <button
           className="btn"

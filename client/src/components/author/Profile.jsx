@@ -8,7 +8,6 @@ function Profile() {
 
   const [Message, setMessage] = useState("");
   const [isEquals, setIsEquals] = useState(false);
-  const [IsThereAFile, setIsThereAFile] = useState(false);
   const [InputP1, setInputP1] = useState("");
   const [InputP2, setInputP2] = useState("");
   const [InputFile, setInputFile] = useState("");
@@ -21,7 +20,7 @@ function Profile() {
       const formData = new FormData();
       if (InputP1 !== "" && InputP2 !== "") {
         if (InputP1 === InputP2) {
-          formData.append("newValue", InputP1);
+          formData.append("password", InputP1);
           setMessage("סיסמה שונתה בהצלחה");
           setIsEquals(true);
         } else {
@@ -32,7 +31,7 @@ function Profile() {
 
       if (typeof InputFile !== "undefined" && InputFile !== "") {
         formData.append("image", InputFile);
-        setIsThereAFile(true);
+        formData.append("IsThereAFile", true);
       }
 
       if (InputGH !== "") {
@@ -47,8 +46,6 @@ function Profile() {
       }
 
       formData.append("user_id", stateGlobal.user_id);
-      formData.append("levelU", stateGlobal.level);
-      formData.append("IsThereAFile", IsThereAFile);
 
       const URL = "/admin";
       const response = await fetch(URL, {
@@ -56,7 +53,6 @@ function Profile() {
         body: formData,
       });
       const data = await response.json();
-      console.log(data);
     } catch (error) {
       console.log(error);
     }

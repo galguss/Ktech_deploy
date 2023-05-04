@@ -19,8 +19,8 @@ exports.getAllSubjectsObject = async () => {
 }
 
 exports.getSubject = (subject) => {
-    let sql = `SELECT * FROM subjects WHERE = '${subject}'`;
-    return db.execute(sql);
+    let [sql, _] = `SELECT subject_id FROM subjects WHERE = '${subject}'`;
+    return db.execute(sql[0]);
 }
 
 exports.createSubject = (subject) => {

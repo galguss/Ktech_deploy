@@ -29,6 +29,8 @@ function Tests({ item, handleCangeNav }) {
           <Viewer fileUrl={item.file_to_solve} />
         </Worker>
       </div>
+      <span className="title">קישורים של הפיתרון:</span>
+      <div className="links-box" dangerouslySetInnerHTML={{ __html: item.links }} />
 
       {GlobalState.email !== item.the_solver && (
         <form className="response">
