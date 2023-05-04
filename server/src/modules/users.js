@@ -16,31 +16,30 @@ exports.createUser = (email, password, github, fullname, level) => {
     return db.execute(sql);
 };
 
-exports.updateUser = async (column, oddValue ,newValue) => {
-    let sql_id = `SELECT * FROM users WHERE ${column} = '${oddValue}';`;
-    let [id, _] = await db.execute(sql_id);
-    id = id[0].user_id;
-
-    let sql = `UPDATE users SET ${column} = '${newValue}' WHERE user_id = '${id}';`;
-    return db.execute(sql);
-}
-
-exports.updatePasUser = (userID ,newValue) => {
-    let sql = `UPDATE users SET password = '${newValue}' WHERE user_id = '${userID}';`;
-    return db.execute(sql);
-}
-exports.saveImage = (image, id) => {
-    const sql_page = `UPDATE users SET image = '${image}' WHERE user_id = ${id}`;
-    return db.execute(sql_page);
-}
-
-exports.updateFavLangUser = (userID ,newValue) => {
-    let sql = `UPDATE users SET favorite_languages = '${newValue}' WHERE user_id = '${userID}';`;
-    return db.execute(sql);
-}
-
-exports.updateHobbiesUser = (userID ,newValue) => {
-    let sql = `UPDATE users SET hobbies = '${newValue}' WHERE user_id = '${userID}';`;
+exports.updateUser = (id, column ,newValue, password, image, favorite, hobbies, github) => {
+    let sql = '';
+    if(typeof column !== 'undefined'){
+        if(column === 'password'){
+            sql = `UPDATE users SET password = '${password}' WHERE user_id = '${id}';`;
+        }else{
+            sql = `UPDATE users SET ${column} = '${newValue}' WHERE user_id = '${id}';`;
+        }
+        return db.execute(sql);
+    }
+    
+    sql = 'UPDATE users SET ';
+    if(password !== false)
+    sql += `password = '${password}', `;
+    if(typeof image !== 'undefined')
+    sql += `image = '${image}', `;
+    if(typeof favorite !== 'undefined')
+    sql += `favorite_languages = '${favorite}', `;
+    if(typeof hobbies !== 'undefined')
+    sql += `hobbies = '${hobbies}', `;
+    if(typeof github !== 'undefined')
+    sql += `github = '${github}', `;
+    sql = sql.slice(0, -2); // Remove the last comma and space
+    sql +=`WHERE user_id = '${id}';`;
     return db.execute(sql);
 }
 

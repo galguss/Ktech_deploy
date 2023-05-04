@@ -1,23 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
-import Menu from "../main/Menu";
 import Input from "../main/Input";
 
-function PacthProfession() {
+function PacthProfession({ProfessionId}) {
   const [Patch, setPatch] = useState("All fields must be filled");
-  const [InputP, setInputP] = useState("");
   const [InputNV, setInputNV] = useState("");
-  const [ListData, setListData] = useState([]);
-
-  async function getProfession() {
-    const URL = "/profession";
-    const res = await fetch(URL);
-    setListData(await res.json());
-  }
-
-  useEffect(() => {
-    getProfession();
-  }, []);
 
   async function SubmitPatch() {
     try {
@@ -28,7 +15,7 @@ function PacthProfession() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          professionData: InputP,
+          ProfessionId: ProfessionId,
           newValue: InputNV,
         }),
       });
@@ -42,13 +29,6 @@ function PacthProfession() {
   return (
     <>
       <form className="response">
-        <Input
-          label="Profession"
-          type="text"
-          list="profession"
-          handleValue={(val) => setInputP(val)}
-        />
-        <Menu items={ListData} nameInput="profession" val="profession" />
         <Input
           label="New Value"
           type="text"

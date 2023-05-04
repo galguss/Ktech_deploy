@@ -2,10 +2,9 @@ import React, { useState } from "react";
 
 import Input from "../main/Input";
 
-function PacthUsers() {
+function PacthUsers({userId}) {
   const [Patch, setPatch] = useState("All fields must be filled");
   const [InputCol, setInputCol] = useState("");
-  const [InputOldV, setInputOldV] = useState("");
   const [InputNV, setInputNV] = useState("");
 
   async function SubmitPatch() {
@@ -18,7 +17,7 @@ function PacthUsers() {
         },
         body: JSON.stringify({
           column: InputCol,
-          oldValue: InputOldV,
+          user_id: userId,
           newValue: InputNV,
         }),
       });
@@ -36,11 +35,6 @@ function PacthUsers() {
           label="Column"
           type="text"
           handleValue={(val) => setInputCol(val)}
-        />
-        <Input
-          label="Old Value"
-          type="text"
-          handleValue={(val) => setInputOldV(val)}
         />
         <Input
           label="New Value"

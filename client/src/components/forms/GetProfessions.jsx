@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 //import DataTable from "react-data-table-component";
 import "../../styles/routesStyle/getUsers.css";
 
-function GetProfessions() {
+function GetProfessions({handleGetProfessionId}) {
   const [Professions, setProfessions] = useState([]);
   const [CountProfession, setCountProfession] = useState(0);
   const [Alert, setAlert] = useState(false);
@@ -86,7 +86,7 @@ function GetProfessions() {
       <tbody>
         {Professions.map((item) => <tr key={item.profession_id}>
           <td>{item.profession}</td>
-          <td><button onClick={() => navigate('/admin/PatchProfessions')} className="btnTable">עריכה</button></td>
+          <td><button onClick={() => {handleGetProfessionId(item.profession_id); navigate('/admin/PatchProfessions');}} className="btnTable">עריכה</button></td>
           <td><button onClick={() => {
             setIdForDelete(item.profession_id);
             setAlert(true);

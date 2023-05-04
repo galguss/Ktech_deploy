@@ -6,14 +6,11 @@ exports.getAllArticles = async () => {
     return articles;
 }
 
-exports.createArticle = async (page, subject_id, profession_id, season_and_Question_numner, level) => {
+exports.createArticle = async (page, subject, profession, season_and_Question_numner, level) => {
 
-    const sql_page = `INSERT INTO pages (page) VALUE ('${page}')`;
-    await db.execute(sql_page);
-
-    let sql_pageId = `SELECT page_id FROM pages WHERE page = '${page}';`;
-    let [pageId, _] = await db.execute(sql_pageId);
-    pageId = pageId[0].page_id;
+    const [result, _] = await db.execute('INSERT INTO pages (page) VALUES (?)', [page]);
+    const [subject_id, s]= await db.execute('SELECT subject_id FROM subjects WHERE subject = ?', [subject]);
+    const [profession_id, p] = await db.execute('SELECT profession_id FROM professions WHERE profession = ?', [profession]);
     
     let date = new Date();
     let yyyy = date.getFullYear();
@@ -22,30 +19,36 @@ exports.createArticle = async (page, subject_id, profession_id, season_and_Quest
 
     const todaysDate = `${dd}/${mm}/${yyyy}`;
 
-    let sql = `INSERT INTO articles ( 
-        subject_id, 
-        profession_id, 
-        page_id, 
-        season_and_Question_numner, 
-        level,  
-        there_is_a_solution, 
-        inspection_confirmaction, 
-        Approval_for_publication, 
-        Date_of_writing_solution
-        ) 
-        VALUE (
-          ${subject_id},
-          ${profession_id},
-          ${pageId},
-         '${season_and_Question_numner}',
-         '${level}',
-          'false',
-          'false',
-          'false',
-          '${todaysDate}'
-         )`;
-
-         return db.execute(sql);
+    const sql = `INSERT INTO articles ( 
+    subject_id, 
+    profession_id, 
+    page_id, 
+    season_and_Question_numner, 
+    level,  
+    there_is_a_solution, 
+    inspection_confirmaction, 
+    Approval_for_publication, 
+    Date_of_writing_solution
+    ) 
+    VALUE (
+    ?,
+    ?,
+    ?,
+    ?,
+    ?,
+    'false',
+    'false',
+    'false',
+    ?
+    )`;
+    const [articleResult, __] = await db.execute(sql, [
+    subject_id[0].subject_id,
+    profession_id[0].profession_id,
+    result.insertId,
+    season_and_Question_numner,
+    level,
+    todaysDate,
+    ]);
 }
 
 exports.updateArticle = async (id, column, newValue) => {
@@ -55,7 +58,7 @@ exports.updateArticle = async (id, column, newValue) => {
 
 exports.updateSolutionArticle = async (id, page, user_id, links) => {
     const isCSharpFile = /\.(cs)$/i.test(page.toString());
-    const [result, _] = await db.execute('INSERT INTO pages (page) VALUES (?)', [`${page}`]);
+    const [result, _] = await db.execute('INSERT INTO pages (page) VALUES (?)', [page]);
     const sql_pageID = result.insertId;
     
     let sql;
@@ -75,14 +78,11 @@ exports.updateSolutionArticle = async (id, page, user_id, links) => {
     return db.execute(sql);
 }
 
-exports.updateTestArticle = (id) => {
-    let sql = `UPDATE articles SET inspection_confirmaction = 'true' WHERE article_id = '${id}';`;
-    return db.execute(sql);
-    
-}
-
 exports.updateTesterArticle = (id, user_id) => {
-    let sqlUser = `UPDATE articles SET the_tester = '${user_id}' WHERE article_id = '${id}';`;
+    let sqlUser = `UPDATE articles SET 
+                   the_tester = '${user_id}',  
+                   inspection_confirmaction = 'true'
+                   WHERE article_id = '${id}';`;
     return db.execute(sqlUser);
 }
 

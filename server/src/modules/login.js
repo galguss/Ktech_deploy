@@ -1,12 +1,8 @@
-//const bcrypt = require('bcrypt');
-//const util = require('util');
-const md5 = require('md5');
+const Encryption = require('../modules/Encryption_M');
 const jwt = require('jsonwebtoken');
 
 
 const userLogin = require('../modules/users');
-
-//const bcryptPromise = util.promisify(bcrypt.compare);
 
 let token = "";
 let userEmail;
@@ -19,11 +15,13 @@ exports.userLogin = async (email, password) => {
         if(user.length === 0){
             return  {message: "User does not exist in the system"};
         };
+        
+        const newPaswword = new Encryption(password);
         userEmail = user[0].email;
         userId = user[0].user_id;
         image = user[0].image;
         levelUser = user[0].level;
-        const userIsLogin =( md5('GK'+ password) === user[0].password);
+        const userIsLogin = newPaswword.IsCompatible(user[0].password);
         if(userIsLogin){
               token = jwt.sign({
                 id: user[0].user_id,

@@ -9,7 +9,7 @@ import "../../styles/routesStyle/getUsers.css";
       <b>Get Users</b>
     </button>*/
 
-function GetUsers() {
+function GetUsers({handleGetUserId}) {
   const [users, setUsers] = useState([]);
   const [CountArticle, setCountArticle] = useState(0);
   const [Alert, setAlert] = useState(false);
@@ -127,7 +127,7 @@ function GetUsers() {
             <td>{item.level}</td>
             <td>{item.favorite_languages}</td>
             <td>{item.hobbies}</td>
-            <td><button onClick={() => navigate("/admin/PatchUsers")} className="btnTable">עריכה</button></td>
+            <td><button onClick={() => {handleGetUserId(item.user_id); navigate("/admin/PatchUsers");}} className="btnTable">עריכה</button></td>
             <td><button  onClick={() => {
                     setAlert(true);
                     setIdForDelete(item.user_id);

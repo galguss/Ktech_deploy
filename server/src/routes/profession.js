@@ -27,12 +27,8 @@ router.post('/', checkAdmin, async (req, res) => {
 
 router.patch('/', checkAdmin, async (req, res) => {
     try {
-        const { professionData,  newValue} = req.body;
-        const professionArray = await professionDB.getAllProfession();
-
-        for(let k = 0; k < professionArray.length; k++)
-        if(professionData === professionArray[k])
-        await professionDB.updateProfession(newValue, k);
+        const { ProfessionId,  newValue} = req.body;
+        await professionDB.updateProfession(newValue, ProfessionId);
 
         res.status(200).json({
             message: "profession Updated!"

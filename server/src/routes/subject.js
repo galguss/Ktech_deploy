@@ -26,12 +26,8 @@ router.post('/', checkAdmin, async (req, res) => {
 
 router.patch('/', checkAdmin, async (req, res) => {
     try {
-        const { subjectData, newValue } = req.body;
-        const subjectArray = await subjectDB.getAllSubject();
-
-        for(let k = 0; k < subjectArray.length; k++)
-        if(subjectData === subjectArray[k])
-        await subjectDB.updateSubject(newValue, k);
+        const { SubjectId, newValue } = req.body;
+        await subjectDB.updateSubject(newValue, SubjectId);
 
         res.status(200).json({
             message: "subject Updated!"

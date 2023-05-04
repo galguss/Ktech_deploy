@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 //import DataTable from "react-data-table-component";
 import "../../styles/routesStyle/getUsers.css";
 
-function GetSubjects() {
+function GetSubjects({handleGetSubjectId}) {
   const [Subjects, setSubjects] = useState([]);
   const [Countsubject, setCountsubject] = useState(0);
   const [Alert, setAlert] = useState(false);
@@ -89,7 +89,7 @@ function GetSubjects() {
               <td>{item.subject}</td>
               <td>
                 <button
-                  onClick={() => navigate("/admin/PatchSubjects")}
+                  onClick={() => {handleGetSubjectId(item.subject_id); navigate("/admin/PatchSubjects");}}
                   className="btnTable"
                 >
                   עריכה
