@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 //import DataTable from "react-data-table-component";
 import "../../styles/routesStyle/getUsers.css";
 
-function GetArticles() {
+function GetArticles({handleGetArticleId}) {
   const [Articles, setArticles] = useState([]);
   const [CountArticle, setCountArticle] = useState(0);
   const [Alert, setAlert] = useState(false);
@@ -235,7 +235,7 @@ function GetArticles() {
               <td>{item.Date_of_writing_solution}</td>
               <td>
                 <button
-                  onClick={() => navigate("/admin/PatchArticles")}
+                  onClick={() => {handleGetArticleId(item.article_id); navigate("/admin/PatchArticles");}}
                   className="btnTable"
                 >
                   עריכה

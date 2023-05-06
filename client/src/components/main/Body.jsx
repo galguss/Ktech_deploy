@@ -19,6 +19,7 @@ function Body() {
   const [UserId, setUserId] = useState();
   const [SubjectId, setSubjectId] = useState();
   const [ProfessionId, setProfessionId] = useState();
+  const [ArticleId, setArticleId] = useState();
 
   return (
     <div className="container">
@@ -26,9 +27,9 @@ function Body() {
         <Route path="/getUsers" element={<GetUsers handleGetUserId = {(val) => setUserId(val)}/>} />
         <Route path="/CreateUsers" element={<CreateUsers />} />
         <Route path="/PatchUsers" element={<PatchUsers userId ={UserId} />} />
-        <Route path="/" element={<GetArticles />} />
+        <Route path="/" element={<GetArticles handleGetArticleId ={(val) => setArticleId(val)}/>} />
         <Route path="/CreateArticles" element={<CreateArticles />} />
-        <Route path="/PatchArticles" element={<PatchArticles />} />
+        <Route path="/PatchArticles" element={<PatchArticles ArticleId={ArticleId}/>} />
         <Route path="/GetSubjects" element={<GetSubjects handleGetSubjectId ={(val) => setSubjectId(val)}/>} />
         <Route path="/CreateSubjects" element={<CreateSubjects  />} />
         <Route path="/PatchSubjects" element={<PatchSubjects SubjectId = {SubjectId}/>} />

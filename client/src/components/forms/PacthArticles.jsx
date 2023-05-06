@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 
 import Input from "../main/Input";
-function PacthArticles() {
+function PacthArticles({ArticleId}) {
   const [Patch, setPatch] = useState("All fields must be filled");
-  const [InputId, setInputId] = useState("");
   const [InputCol, setInputCol] = useState("");
   const [InputNV, SetInputNV] = useState("");
 
@@ -16,7 +15,7 @@ function PacthArticles() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          id: InputId,
+          id: ArticleId,
           column: InputCol,
           newValue: InputNV,
         }),
@@ -31,11 +30,6 @@ function PacthArticles() {
   return (
     <>
       <form className="response">
-        <Input
-          label="ID"
-          type="number"
-          handleValue={(val) => setInputId(val)}
-        />
         <Input
           label="Column"
           type="text"
