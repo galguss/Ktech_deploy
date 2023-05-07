@@ -16,20 +16,20 @@ import PatchProfessions from "../forms/PacthProfessions";
 import "../../styles/body.css";
 
 function Body() {
-  const [UserId, setUserId] = useState();
+  const [User, setUser] = useState();
   const [SubjectId, setSubjectId] = useState();
   const [ProfessionId, setProfessionId] = useState();
-  const [ArticleId, setArticleId] = useState();
+  const [Article, setArticle] = useState();
 
   return (
     <div className="container">
       <Routes>
-        <Route path="/getUsers" element={<GetUsers handleGetUserId = {(val) => setUserId(val)}/>} />
+        <Route path="/getUsers" element={<GetUsers handleGetUserId = {(val) => setUser(val)}/>} />
         <Route path="/CreateUsers" element={<CreateUsers />} />
-        <Route path="/PatchUsers" element={<PatchUsers userId ={UserId} />} />
-        <Route path="/" element={<GetArticles handleGetArticleId ={(val) => setArticleId(val)}/>} />
-        <Route path="/CreateArticles" element={<CreateArticles />} />
-        <Route path="/PatchArticles" element={<PatchArticles ArticleId={ArticleId}/>} />
+        <Route path="/PatchUsers" element={<PatchUsers User ={User} />} />
+        <Route path="/" element={<GetArticles handleGetArticle ={(val) => setArticle(val)}/>} />
+        <Route path="/CreateArticles" element={<CreateArticles/>} />
+        <Route path="/PatchArticles" element={<PatchArticles Article={Article} />} />
         <Route path="/GetSubjects" element={<GetSubjects handleGetSubjectId ={(val) => setSubjectId(val)}/>} />
         <Route path="/CreateSubjects" element={<CreateSubjects  />} />
         <Route path="/PatchSubjects" element={<PatchSubjects SubjectId = {SubjectId}/>} />

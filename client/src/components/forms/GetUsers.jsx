@@ -94,7 +94,7 @@ function GetUsers({handleGetUserId}) {
       <table>
         <thead>
         <tr>
-            <td colSpan="1" colspan="100" className="right">
+            <td colSpan="10" className="right">
               <button
                 className="btnTable"
                 onClick={() => navigate("/admin/CreateUsers")}
@@ -104,21 +104,21 @@ function GetUsers({handleGetUserId}) {
             </td>
           </tr>
           <tr>
-            <th colSpan="1">user id</th>
-            <th colSpan="1">email</th>
-            <th colSpan="1">github</th>
-            <th colSpan="1">full name</th>
-            <th colSpan="1">image</th>
-            <th colSpan="1">level</th>
-            <th colSpan="1">favorite languages</th>
-            <th colSpan="1">hobbies</th>
-            <th colSpan="1"></th>
-            <th colSpan="1"></th>
+            <th>user id</th>
+            <th>email</th>
+            <th>github</th>
+            <th>full name</th>
+            <th>image</th>
+            <th>level</th>
+            <th>favorite languages</th>
+            <th>hobbies</th>
+            <th></th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
           {users.map((item) => 
-          <tr>
+          <tr key={item.user_id}>
             <td>{item.user_id}</td>
             <td>{item.email}</td>
             <td>{item.github}</td>
@@ -127,7 +127,7 @@ function GetUsers({handleGetUserId}) {
             <td>{item.level}</td>
             <td>{item.favorite_languages}</td>
             <td>{item.hobbies}</td>
-            <td><button onClick={() => {handleGetUserId(item.user_id); navigate("/admin/PatchUsers");}} className="btnTable">עריכה</button></td>
+            <td><button onClick={() => {handleGetUserId(item); navigate("/admin/PatchUsers");}} className="btnTable">עריכה</button></td>
             <td><button  onClick={() => {
                     setAlert(true);
                     setIdForDelete(item.user_id);

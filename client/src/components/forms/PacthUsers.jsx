@@ -1,11 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
 
+import Menu from '../main/Menu';
 import Input from "../main/Input";
 
-function PacthUsers({userId}) {
+function PacthUsers({User}) {
+  const [Column, setColumn] = useState(['email', 'password','github','full_name']);
   const [Patch, setPatch] = useState("All fields must be filled");
   const [InputCol, setInputCol] = useState("");
   const [InputNV, setInputNV] = useState("");
+  const navigate = useNavigate();
+
+  useEffect(() => {setInputNV(User[InputCol])}, [InputCol]);
 
   async function SubmitPatch() {
     try {
@@ -17,7 +23,7 @@ function PacthUsers({userId}) {
         },
         body: JSON.stringify({
           column: InputCol,
-          user_id: userId,
+          user_id: User.user_id,
           newValue: InputNV,
         }),
       });
@@ -34,12 +40,15 @@ function PacthUsers({userId}) {
         <Input
           label="Column"
           type="text"
+          list="Column"
           handleValue={(val) => setInputCol(val)}
         />
+        <Menu items={Column} nameInput="Column"/>
         <Input
           label="New Value"
           type="text"
           handleValue={(val) => setInputNV(val)}
+          value={InputNV}
         />
 
         <p className="chatBox">{Patch.message}</p>
@@ -48,6 +57,7 @@ function PacthUsers({userId}) {
           onClick={(e) => {
             e.preventDefault();
             SubmitPatch();
+            navigate('/admin/getUsers');
           }}
         >
           <b>Pacth</b>

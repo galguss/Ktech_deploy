@@ -68,7 +68,7 @@ function GetSubjects({handleGetSubjectId}) {
       <table>
         <thead>
           <tr>
-            <td colSpan="1" colspan="100" className="right">
+            <td colSpan="10" className="right">
               <button
                 className="btnTable"
                 onClick={() => navigate("/admin/CreateSubjects")}
@@ -78,9 +78,9 @@ function GetSubjects({handleGetSubjectId}) {
             </td>
           </tr>
           <tr>
-            <th colSpan="1">subject</th>
-            <th colSpan="1"></th>
-            <th colSpan="1"></th>
+            <th>subject</th>
+            <th></th>
+            <th></th>
           </tr>
         </thead>
         <tbody>

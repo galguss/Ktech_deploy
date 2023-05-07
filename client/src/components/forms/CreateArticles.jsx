@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
 
 import Menu from "../main/Menu";
 import Input from "../main/Input";
@@ -13,6 +14,8 @@ function CreateArticles() {
 
   const [lisetSub, setListSub] = useState([]);
   const [lisetProf, setListProf] = useState([]);
+  const navigate = useNavigate();
+
 
   async function getSubjects() {
     const URL = "/subject";
@@ -113,6 +116,7 @@ function CreateArticles() {
         onClick={(e) => {
           e.preventDefault();
           SubmitCeate();
+          navigate('/admin');
         }}
       >
         <b>Create</b>

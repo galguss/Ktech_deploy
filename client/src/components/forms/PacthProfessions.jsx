@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 
 import Input from "../main/Input";
 
 function PacthProfession({ProfessionId}) {
   const [Patch, setPatch] = useState("All fields must be filled");
   const [InputNV, setInputNV] = useState("");
+  const navigate = useNavigate();
 
   async function SubmitPatch() {
     try {
@@ -30,7 +32,7 @@ function PacthProfession({ProfessionId}) {
     <>
       <form className="response">
         <Input
-          label="New Value"
+          label="New Profession"
           type="text"
           handleValue={(val) => setInputNV(val)}
         />
@@ -41,6 +43,7 @@ function PacthProfession({ProfessionId}) {
           onClick={(e) => {
             SubmitPatch();
             e.preventDefault();
+            navigate('/admin/GetProfessions');
           }}
         >
           <b>Patch</b>

@@ -4,7 +4,7 @@ function Menu({ items, nameInput, val }) {
   return (
     <datalist id={nameInput}>
       {items.map((obj, index) => (
-        <option key={`item${index}`}>{obj[val]}</option>
+        <option key={`item${index}`}>{typeof val !=='undefined' ? obj[val] : obj}</option>
       ))}
     </datalist>
   );

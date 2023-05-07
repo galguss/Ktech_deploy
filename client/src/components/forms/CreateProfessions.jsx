@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import Input from "../main/Input";
 
 function CreateProfession() {
   const [Create, setCeate] = useState("All fields must be filled");
   const [InputVal, setInputVal] = useState("");
+  const navigate = useNavigate();
 
   async function SubmitCeate() {
     try {
@@ -38,6 +40,7 @@ function CreateProfession() {
           onClick={(e) => {
             e.preventDefault();
             SubmitCeate();
+            navigate('/admin/GetProfessions');
           }}
         >
           <b>Create</b>

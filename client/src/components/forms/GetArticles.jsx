@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 //import DataTable from "react-data-table-component";
 import "../../styles/routesStyle/getUsers.css";
 
-function GetArticles({handleGetArticleId}) {
+function GetArticles({handleGetArticle}) {
   const [Articles, setArticles] = useState([]);
   const [CountArticle, setCountArticle] = useState(0);
   const [Alert, setAlert] = useState(false);
@@ -159,7 +159,7 @@ function GetArticles({handleGetArticleId}) {
       <table>
         <thead>
           <tr>
-            <td colSpan="1" colspan="100" className="right">
+            <td colSpan="10" className="right">
               <button
                 className="btnTable"
                 onClick={() => navigate("/admin/CreateArticles")}
@@ -170,18 +170,18 @@ function GetArticles({handleGetArticleId}) {
           </tr>
           <tr>
             
-            <th colSpan="1">subject</th>
-            <th colSpan="1">profession</th>
-            <th colSpan="1">season and Question numner</th>
-            <th colSpan="1">level</th>
-            <th colSpan="1">the solver</th>
-            <th colSpan="1">there is a solution</th>
-            <th colSpan="1">the tester</th>
-            <th colSpan="1">inspection confirmaction</th>
-            <th colSpan="1">Approval for publication</th>
-            <th colSpan="1">Date of writing solution</th>
-            <th colSpan="1"></th>
-            <th colSpan="1"></th>
+            <th>subject</th>
+            <th>profession</th>
+            <th>season and Question numner</th>
+            <th>level</th>
+            <th>the solver</th>
+            <th>there is a solution</th>
+            <th>the tester</th>
+            <th>inspection confirmaction</th>
+            <th>Approval for publication</th>
+            <th>Date of writing solution</th>
+            <th></th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -235,7 +235,7 @@ function GetArticles({handleGetArticleId}) {
               <td>{item.Date_of_writing_solution}</td>
               <td>
                 <button
-                  onClick={() => {handleGetArticleId(item.article_id); navigate("/admin/PatchArticles");}}
+                  onClick={() => {handleGetArticle(item); navigate("/admin/PatchArticles");}}
                   className="btnTable"
                 >
                   עריכה

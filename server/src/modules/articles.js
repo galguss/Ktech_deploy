@@ -51,8 +51,15 @@ exports.createArticle = async (page, subject, profession, season_and_Question_nu
     ]);
 }
 
-exports.updateArticle = async (id, column, newValue) => {
-    let sql = `UPDATE articles SET ${column} = '${newValue}' WHERE article_id = '${id}';`;
+exports.updateArticle = async (id ,subjectValue, professionValue, season_and_Question_numner,) => {
+    const [subject_id, s]= await db.execute('SELECT subject_id FROM subjects WHERE subject = ?', [subjectValue]);
+    const [profession_id, p] = await db.execute('SELECT profession_id FROM professions WHERE profession = ?', [professionValue]);
+    
+    let sql = `UPDATE articles SET 
+               subject_id = '${subject_id[0].subject_id}',
+               profession_id ='${profession_id[0].profession_id}',
+               season_and_Question_numner = '${season_and_Question_numner}' 
+               WHERE article_id = '${id}';`;
     return db.execute(sql);
 }
 

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import Input from "../main/Input";
 
 function CreateUser() {
@@ -8,6 +9,7 @@ function CreateUser() {
   const [InputG, setInputG] = useState("");
   const [InputFN, setInputFN] = useState("");
   const [InputL, setInputL] = useState("");
+  const navigate = useNavigate();
 
   async function SubmitCeate() {
     try {
@@ -84,6 +86,7 @@ function CreateUser() {
           onClick={(e) => {
             SubmitCeate();
             e.preventDefault();
+            navigate('/admin/getUsers');
           }}
         >
           <b>Create</b>

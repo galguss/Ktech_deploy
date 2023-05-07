@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import { useNavigate } from 'react-router-dom';
+
 import Input from "../main/Input";
 
 function CreateSubject() {
   const [Create, setCeate] = useState("All fields must be filled");
   const [InputVal, setInputVal] = useState("");
-
+  const navigate = useNavigate();
   async function SubmitCeate() {
     try {
       const URL = "/subject";
@@ -38,6 +40,7 @@ function CreateSubject() {
           onClick={(e) => {
             e.preventDefault();
             SubmitCeate();
+            navigate('/admin/GetSubjects');
           }}
         >
           <b>Create</b>

@@ -1,10 +1,13 @@
 import React, { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 
 import Input from "../main/Input";
-function PacthArticles({ArticleId}) {
+function PacthArticles({Article}) {
   const [Patch, setPatch] = useState("All fields must be filled");
-  const [InputCol, setInputCol] = useState("");
-  const [InputNV, SetInputNV] = useState("");
+  const [valSub, setValSub] = useState(Article.subject_id);
+  const [valProf, setValProf] = useState(Article.profession_id);
+  const [valSAQ, setValSAQ] = useState(Article.season_and_Question_numner);
+  const navigate = useNavigate();
 
   async function SubmitPatch() {
     try {
@@ -15,9 +18,10 @@ function PacthArticles({ArticleId}) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          id: ArticleId,
-          column: InputCol,
-          newValue: InputNV,
+          id: Article.article_id,
+          subjectValue: valSub,
+          professionValue: valProf,
+          season_and_Question_numner:valSAQ
         }),
       });
       const data = await response.json();
@@ -30,16 +34,26 @@ function PacthArticles({ArticleId}) {
   return (
     <>
       <form className="response">
-        <Input
-          label="Column"
-          type="text"
-          handleValue={(val) => setInputCol(val)}
-        />
-        <Input
-          label="New Value"
-          type="text"
-          handleValue={(val) => SetInputNV(val)}
-        />
+      <Input
+        label="Subject"
+        type="text"
+        list="subject"
+        handleValue={(val) => setValSub(val)}
+        value={valSub}
+      />
+      <Input
+        label="Profession"
+        type="text"
+        list="profession"
+        handleValue={(val) => setValProf(val)}
+        value={valProf}
+      />
+      <Input
+        label="Season And Question Numner"
+        type="text"
+        handleValue={(val) => setValSAQ(val)}
+        value={valSAQ}
+      />
 
         <p className="chatBox">{Patch.message}</p>
         <button
@@ -47,6 +61,7 @@ function PacthArticles({ArticleId}) {
           onClick={(e) => {
             SubmitPatch();
             e.preventDefault();
+            navigate('/admin');
           }}
         >
           <b>Pacth</b>

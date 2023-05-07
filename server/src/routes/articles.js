@@ -41,8 +41,8 @@ router.post('/', checkAdmin, upload.single('page'), async (req, res) => {
 
 router.patch('/', checkAuth, async (req, res) => {
     try {
-        const { id, column, newValue } = req.body;
-            await article.updateArticle(id, column, newValue);
+        const { id ,subjectValue, professionValue, season_and_Question_numner} = req.body;
+        await article.updateArticle(id ,subjectValue, professionValue, season_and_Question_numner);
         
         res.status(200).json({
             message: "article updated!"

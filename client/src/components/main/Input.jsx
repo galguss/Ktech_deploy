@@ -1,6 +1,6 @@
 import React from "react";
 
-function Input({ label, type, list = "", handleValue }) {
+function Input({ label, type, list = "", handleValue , value}) {
   return (
     <>
       <label className="text">
@@ -11,6 +11,7 @@ function Input({ label, type, list = "", handleValue }) {
         list={list}
         type={type}
         autoComplete="off"
+        value={value}
         onChange={(e) =>
           handleValue(type === "file" ? e.target.files[0] : e.target.value)
         }

@@ -68,7 +68,7 @@ function GetProfessions({handleGetProfessionId}) {
      <table>
       <thead>
       <tr>
-        <td colSpan="1" colspan="100" className="right">
+        <td colSpan="10" className="right">
               <button
                 className="btnTable"
                 onClick={() => navigate("/admin/CreateProfessions")}
@@ -78,9 +78,9 @@ function GetProfessions({handleGetProfessionId}) {
             </td>
         </tr>
         <tr>
-          <th colSpan="1">profession</th>
-          <th colSpan="1"></th>
-          <th colSpan="1"></th>
+          <th>profession</th>
+          <th></th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
