@@ -57,9 +57,11 @@ function Questions() {
                     )}
                     {TypeShow === "pdf" && (
                       <>
+                        <div className="containerPFD">
                         <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.min.js">
                           <Viewer fileUrl={item.file_to_solve} />
                         </Worker>
+                        </div>
                         <div
                           className="links-box"
                           dangerouslySetInnerHTML={{ __html: item.links }}

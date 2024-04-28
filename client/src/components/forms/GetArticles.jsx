@@ -159,7 +159,7 @@ function GetArticles({handleGetArticle}) {
       <table>
         <thead>
           <tr>
-            <td colSpan="10" className="right">
+            <td colSpan="12" className="right">
               <button
                 className="btnTable"
                 onClick={() => navigate("/admin/CreateArticles")}
@@ -206,6 +206,7 @@ function GetArticles({handleGetArticle}) {
               </td>
               <td>{item.the_tester}</td>
               <td>
+                {item.there_is_a_solution === "true"?
                 <button
                   onClick={() => navigate("/author/test" + index)}
                   className={
@@ -216,6 +217,11 @@ function GetArticles({handleGetArticle}) {
                 >
                   ליבדוק
                 </button>
+                :
+                <div className="demoButton">
+                  ליבדוק
+                </div>
+              }
               </td>
               <td>
                 <button

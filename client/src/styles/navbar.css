@@ -22,23 +22,34 @@ nav ul li a{
     color: white;
 }
 
-nav ul .top{
+.top{
     margin-top: 4px;
     color: black;
     font-size: 29px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 22px;
 }
 
-nav ul .item{
+.item{
     display: none;
+    text-align: right;
+    width: 80%;
+    padding: 5px;
 }
 
-nav ul:hover .item{
+.item > a{
+    width: 100%;
+}
+
+ul:hover .item{
     display: block;
-    background-color: #4A9D39;
+    background-color: #8dd454;
 }
 
-nav ul .item a:hover{
-    color: #66B1F2;
+.item a:hover{
+    background-color: #3a842b;
+    color: white;
 }
 
 nav ul:hover .top{
@@ -46,7 +57,17 @@ nav ul:hover .top{
     color: white;
 }
 
-nav .linkN:hover{
+.linkH{
+    text-decoration: none;
+    font-size: 22px;
+    font-family:'Varela Round', sans-serif;
+}
+
+.linkN , li{
+    font-family:'Varela Round', sans-serif;
+}
+
+.linkN:hover{
     background-color: #3a842b;
     color: white;
 }
@@ -79,3 +100,17 @@ nav  a{
     align-items: center;
     flex-direction: column;
 }
+
+@media screen and (max-width: 600px){
+    nav{
+      display: none;
+    }
+
+    .top{
+        align-items: end;
+    }
+
+    .item{
+        width: 200px;
+    }
+  }

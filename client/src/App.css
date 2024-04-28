@@ -7,6 +7,9 @@
   text-align: center;
 }
 
+li{
+  list-style-type: none;
+}
 .body-web{
   display: flex;
   width: 100%;
@@ -61,25 +64,34 @@
 
 .userContainer{
   min-height: 80vh;
-  width: 100%;
+  width: 600px;
 }
 
 .user{
-  position: relative;
   display: flex;
   align-items: center;
+  flex-direction: column;
   justify-content: space-around;
   min-height: 300px;
   margin-top: 10px;
 }
 
 .UserName{
-  position: absolute;
   font-size: 26px;
   font-family: Arial, Helvetica, sans-serif;
   color: white;
-  top: 2px;
   text-decoration: none;
+}
+
+.userBody{
+  display: flex;
+  width: 98%;
+  align-items: center;
+  
+}
+
+.userBody > img{
+  margin-left: 5px;
 }
 
 .textbox{
@@ -207,6 +219,45 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
+}
+
+@media screen and (max-width: 600px){
+  .shows{
+    flex-direction: column;
+    margin: auto;
+  }
+
+  .btnShow{
+    width: 100%;
+    margin: 0 5px;
+  }
+
+  .user{
+    flex-direction: column;
+  }
+
+  .user > img{
+    margin-top: 40px;
+  }
+
+  .userBody{
+    flex-direction: column;
+  }
+
+  .Questions-show > img {
+      width: 350px;
+  }
+  .containerPFD{
+    width: 450px;
+  }
+  
+  .container{
+    width: 100%;
+  }
+
+  .btnPub{
+    font-size: 16px;
+  }
 }
 
 /*.App-logo {

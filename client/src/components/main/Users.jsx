@@ -23,6 +23,7 @@ function Users() {
           >
             {item.full_name}
           </a>
+          <div className="userBody">
           <img src={item.image !== null ? item.image : Image} width="250" />
           <p className="textbox">
             <spen>
@@ -37,6 +38,7 @@ function Users() {
               {item.hobbies}
             </spen>
           </p>
+          </div>
         </div>
       ))}
     </div>

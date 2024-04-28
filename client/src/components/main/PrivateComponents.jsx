@@ -29,6 +29,7 @@ function PrivateComponents() {
   useEffect(() => {
     if (isLogged === "true" && globalState.user_id === -1) {
       let id = localStorage.getItem("user_id");
+      console.log("hii, ", id);
       let user_id = "";
       for (let k = 2; k < id.length - 2; k++) user_id += id[k];
       user_id = Number(user_id);

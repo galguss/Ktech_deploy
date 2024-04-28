@@ -6,6 +6,7 @@ Footer{
     align-items: center;
     justify-content: space-around;
     color: white;
+    border-top: white solid 2px;
 }
 
 Footer #A_creator{
@@ -24,5 +25,13 @@ Footer p{
 Footer p > a{
     text-decoration: none;
     color: black;
+    font-family: 'varela round';
 
 }
+
+@media screen and (max-width: 600px){
+    Footer{
+        height: 100px;
+        flex-direction: column;
+    }
+  }

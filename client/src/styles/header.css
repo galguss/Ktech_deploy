@@ -1,10 +1,12 @@
 header{
+    position: relative;
     height: 80px;
     background-color: #4375A2;
     color: white;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    border-bottom: white solid 2px;
 }
 
 header > img{
@@ -19,3 +21,29 @@ header > a{
     color: white;
     margin-right: 110px;
 }
+
+.Amborger{
+    position: absolute;
+    right: 20px;
+    top: 30px;
+    display: none;
+}
+
+.Amborger:hover{
+    cursor: pointer;
+}
+
+.Amborger  .top > div{
+    width: 40px;
+    border-radius: 10px;
+    height: 5px;
+    background-color: black;
+    margin: 2px;
+}
+
+
+@media screen and (max-width: 600px){
+    .Amborger{
+      display: block;
+    }
+  }

@@ -10,7 +10,7 @@ import Questions from "./Questions";
 function Home() {
   return (
     <div className="body-web">
-      <Nav />
+        <Nav />
       <div className="container">
         <Routes>
           <Route path="/" element={<Content />} />

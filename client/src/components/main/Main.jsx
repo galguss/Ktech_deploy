@@ -11,7 +11,7 @@ import PrivateComponents from "./PrivateComponents";
 function Main() {
   const stateGlobal = useSelector(state => state.Login.value);
   return (
-    <div className="main">
+    <main>
       <Routes>
         <Route path="*" element={<Home />} />
         <Route element={<PrivateComponents />}>
@@ -19,7 +19,7 @@ function Main() {
           <Route element={<Author />} path="/author/*" exact/>
         </Route>
       </Routes>
-    </div>
+    </main>
   );
 }
 

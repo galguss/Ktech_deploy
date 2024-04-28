@@ -11,8 +11,7 @@ const article = require('../modules/articles');
 router.get('/', joinArticles ,async (req, res) => {
     try {
         const articles = req.articles;
-        res.status(200).json(articles);
-        
+        res.status(200).json(articles);   
     } catch (error) {
         res.status(401).json({
             message: error
